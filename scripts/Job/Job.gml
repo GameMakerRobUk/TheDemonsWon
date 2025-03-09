@@ -152,6 +152,7 @@ function DeliverResources(_deliver_to, _required_resources) constructor{
 			var _quantity_wanted = _item_struct.wanted;
 			var _expected = _item_struct.expected;
 			var _diff = min(deliver_to.weight.remaining, (_quantity_wanted -_expected));
+			//var _diff = min(_quantity_wanted -_expected);
 			
 			show_debug_message("wanted item : " + _item_name);
 			show_debug_message("wanted _item_struct : " + string(_item_struct));
@@ -207,7 +208,7 @@ function DeliverResources(_deliver_to, _required_resources) constructor{
 			var _haul_item_struct = new Item(_item_name, _item_quantity);
 			
 			_item_struct.expected += _item_quantity;
-			deliver_to.weight.current += _haul_quantity_wanted;
+			deliver_to.weight.current += _item_quantity;
 			deliver_to.weight.update_remaining();
 			
 			show_debug_message("Job created to haul to building | _item_struct: " + string(_item_struct) + " | haul_item_struct: " + string(_haul_item_struct))
