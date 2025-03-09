@@ -50,7 +50,7 @@ job_was_cancelled = function(_item_struct){
 	var _expected_quantity = _inventory_item.expected;
 	
 	_inventory_item.expected -= _quantity;
-	weight.current += _quantity;
+	weight.current -= _quantity;
 	weight.update_remaining();
 }
 

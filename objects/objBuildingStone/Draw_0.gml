@@ -8,4 +8,6 @@ for (var i = 0; i < array_length(_item_names); i ++){
 	draw_text(x, (_start_y) + (i * 16), _item_struct.name + ":" + string(_item_struct.quantity) + " | " + string(_item_struct.wanted) + " | " + string(_item_struct.expected));
 }
 draw_text(x, _start_y - 16, string(hp) + "/" + string(hp_max));
-//draw_text(x, y + 20, string(hp));
+
+
+draw_text(x, _start_y - 32, "Weight: " + string(weight.current) + "/" + string(weight.maximum) + "/" + string(weight.remaining));
