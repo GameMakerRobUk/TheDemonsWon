@@ -86,3 +86,19 @@ function pickup(_item_struct, _store, _taker){
 	
 	show_debug_message("pickup done | _item_struct: " + string(_item_struct) + " | _taker inv: " + string(_taker.inventory))
 }
+
+function get_weight(_item_name){
+	var _item_data = struct_get(global.item_stats, _item_name);
+	if (_item_data == undefined){
+		show_debug_message("_item_data for " + _item_name + " is undefined");
+		return 1;
+	}
+	
+	var _weight = struct_get(_item_data, weight);
+	if (_weight == undefined){
+		show_debug_message("_weight for " + _item_name + " is undefined");
+		return 1;
+	}
+	
+	return _weight;
+}
