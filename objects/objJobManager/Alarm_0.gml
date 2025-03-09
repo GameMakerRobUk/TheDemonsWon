@@ -1,6 +1,5 @@
 /// @description Update Jobs/Workers
 alarm[0] = room_speed;
-//show_debug_message("objJobManager alarm[0]")
 
 with objBoulder{
 	if (job != undefined){
@@ -20,6 +19,7 @@ with objTree{
 }
 
 for (var i =0; i < array_length(global.persistent_jobs); i ++){
+	show_debug_message("Updating for persistent job from objJobManager")
 	global.persistent_jobs[i].update();	
 }
 
