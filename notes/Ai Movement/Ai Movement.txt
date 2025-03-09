@@ -1,0 +1,6 @@
+Nodes would go a long way. Parents wouldn't need to be calculated
+very often. Just at the start of loading a chunk, and whenever
+there's a change to the scenery.
+
+Use of ladders/slopes can remove the need for jumping
+Moats can be filled in with dirt/pontoons

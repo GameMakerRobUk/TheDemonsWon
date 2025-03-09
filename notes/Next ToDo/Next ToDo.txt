@@ -1,0 +1,2 @@
+Make a "get_job" script for actors.
+They will choose jobs closest to them (and later on ignore jobs that they are now allowed/able to do)

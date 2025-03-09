@@ -1,0 +1,1 @@
+state = ACTOR_STATE.idle;

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"update_cell_coords",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"update_cell_coords",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

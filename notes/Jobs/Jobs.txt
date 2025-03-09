@@ -1,0 +1,15 @@
+Containers:
+
+Containers can contain items. A sword on the ground is a container with a single item.
+A storage container is a container
+A Building under construction is a container
+Basically anything requiring people to pick up stuff and bring it is a container
+
+Stores that have empty storage should put out a call to the job manager to say:
+ - Hey, I need resources
+ 
+Buildings under construction can also work like this, except they have a higher priority 
+than regular stores.
+
+
+How to deal with multiple stores that both have space?
