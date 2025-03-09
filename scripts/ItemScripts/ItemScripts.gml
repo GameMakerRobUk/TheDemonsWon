@@ -94,7 +94,7 @@ function get_weight(_item_name){
 		return 1;
 	}
 	
-	var _weight = struct_get(_item_data, weight);
+	var _weight = struct_get(_item_data, "weight");
 	if (_weight == undefined){
 		show_debug_message("_weight for " + _item_name + " is undefined");
 		return 1;

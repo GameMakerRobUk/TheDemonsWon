@@ -151,20 +151,22 @@ function DeliverResources(_deliver_to, _required_resources) constructor{
 			var _item_struct = struct_get(required_resources, _item_name);
 			var _quantity_wanted = _item_struct.wanted;
 			var _expected = _item_struct.expected;
-			var _diff = min(deliver_to.weight.remaining, (_quantity_wanted -_expected));
-			//var _diff = min(_quantity_wanted -_expected);
+			var _weight_per_unit = get_weight(_item_name);
+			var _max_items_based_on_weight = floor(deliver_to.weight.remaining / _weight_per_unit);
+			var _quantity_diff = min(_max_items_based_on_weight, (_quantity_wanted -_expected));
 			
 			show_debug_message("wanted item : " + _item_name);
 			show_debug_message("wanted _item_struct : " + string(_item_struct));
 			show_debug_message("wanted _quantity : " + string(_quantity_wanted));
 			show_debug_message("wanted _expected : " + string(_expected));
-			show_debug_message("wanted _diff : " + string(_diff));
+			show_debug_message("wanted _diff : " + string(_quantity_diff));
+			show_debug_message("_weight_per_unit : " + string(_weight_per_unit));
 			show_debug_message("weight: " + string(deliver_to.weight));
 			
-			if (_diff == 0){
+			if (_quantity_diff == 0){
 				continue;	
 			}
-			var _haul_quantity_wanted = min(5, _diff);
+			var _haul_quantity_wanted = min(5, _quantity_diff);
 			var _available_stores = [];
 			
 			//Find a store with the wanted resource
@@ -213,9 +215,9 @@ function DeliverResources(_deliver_to, _required_resources) constructor{
 			var _haul_item_struct = new Item(_item_name, _item_quantity);
 			
 			_item_struct.expected += _item_quantity;
-			deliver_to.weight.current += _item_quantity;
+			deliver_to.weight.current += (_item_quantity * _weight_per_unit);
 			deliver_to.weight.update_remaining();
-			show_debug_message("updating deliver_to.weight | weight: " + string(deliver_to.weight))
+			show_debug_message("Updating deliver_to.weight | Adding " + string(_item_quantity) + " " + _item_name + " with a unit weight of " + string(_weight_per_unit) + ", for a total of " + string(_item_quantity * _weight_per_unit) + " weight.")
 			
 			show_debug_message("Job created to haul to building | _item_struct: " + string(_item_struct) + " | haul_item_struct: " + string(_haul_item_struct))
 				
