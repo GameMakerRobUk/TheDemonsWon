@@ -169,6 +169,10 @@ function DeliverResources(_deliver_to, _required_resources) constructor{
 			
 			//Find a store with the wanted resource
 			with parStorage{
+				
+				if (id == other.deliver_to){
+					continue;	
+				}
 				var _store_item_struct = struct_get(inventory, _item_name)
 				if (_store_item_struct != undefined && _store_item_struct.quantity > 0){
 					get_distance(other.deliver_to);
