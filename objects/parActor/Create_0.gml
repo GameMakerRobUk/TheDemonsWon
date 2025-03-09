@@ -27,4 +27,6 @@ job_was_cancelled = function(){
 	job_finished(id);
 }
 
-//alarm[0] = irandom_range(room_speed, (room_speed * 3));//Test Cancelling jobs
+if (TEST_CANCELLATIONS){
+	alarm[0] = irandom_range(room_speed, (room_speed * 3));//Test Cancelling jobs
+}
