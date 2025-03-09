@@ -1,17 +1,3 @@
-//required_resources = {
-//	"LOGS" : {
-//		total_wanted : 20, 
-//		expected_incoming : 0,
-//	}
-//}
-//inventory = {	
-//	"LOGS" : {
-//		quantity : 0,
-//		total_wanted : 20, 
-//		expected : 0,
-//	}
-//};
-
 job = undefined;
 
 item_was_given = function(){

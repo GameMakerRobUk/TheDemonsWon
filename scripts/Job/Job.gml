@@ -159,6 +159,7 @@ function DeliverResources(_deliver_to, _required_resources) constructor{
 			show_debug_message("wanted _quantity : " + string(_quantity_wanted));
 			show_debug_message("wanted _expected : " + string(_expected));
 			show_debug_message("wanted _diff : " + string(_diff));
+			show_debug_message("weight: " + string(deliver_to.weight));
 			
 			if (_diff == 0){
 				continue;	
@@ -210,6 +211,7 @@ function DeliverResources(_deliver_to, _required_resources) constructor{
 			_item_struct.expected += _item_quantity;
 			deliver_to.weight.current += _item_quantity;
 			deliver_to.weight.update_remaining();
+			show_debug_message("updating deliver_to.weight | weight: " + string(deliver_to.weight))
 			
 			show_debug_message("Job created to haul to building | _item_struct: " + string(_item_struct) + " | haul_item_struct: " + string(_haul_item_struct))
 				

@@ -4,6 +4,7 @@ function Weight(_max, _current) constructor{
 	update_remaining();
 	
 	static update_remaining = function(){
+		show_debug_message("Weight update_remaining")
 		remaining = maximum - current;
 	}
 }
