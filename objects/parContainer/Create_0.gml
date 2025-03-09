@@ -1,3 +1,4 @@
+weight = new Weight(10, 0);
 permanent = true; //If not permanent, and empty, destroy self
 inventory = {};
 update_cell_coords();

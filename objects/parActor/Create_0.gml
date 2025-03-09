@@ -5,6 +5,8 @@ enum ACTOR_STATE{
 	thinking,
 }
 
+weight = new Weight(10, 0);
+
 state_debug = ["idle", "moving", "working", "thinking"]
 
 inventory = {};

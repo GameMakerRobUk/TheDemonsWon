@@ -69,23 +69,20 @@ job_was_cancelled = function(_item_struct){
 	var _expected_quantity = _inventory_item.expected;
 	
 	_inventory_item.expected -= _quantity;
+	weight.current += _quantity;
+	weight.update_remaining();
 	show_debug_message("New inventory: " + string(inventory))
-	//struct_set(_inventory_item, "expected", (_expected_quantity - _quantity));
-		
-	//show_debug_message("Expected amount for " + _item_name + " reduced. Item quantity: " + 
-	//	string(_quantity) + " | Previous expected quantity: " + string(_expected_quantity) + 
-	//	" | new expected quantity: " + string(struct_get(_inventory_item, "expected")))
 	show_debug_message("objBuilding job_was_cancelled finished")
 }
 
 inventory = {};
-//struct_set(inventory, "LOGS", new Item("LOGS", 0, 0, 20));
 add_item(id, new Item("LOGS", 0, 0, 20));
 
 show_debug_message("Building inventory: " + string(inventory))
 
 hp = 0;
 hp_max = 20;
+weight = new Weight(20, 0);
 
 update_cell_coords();
 

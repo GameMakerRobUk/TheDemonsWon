@@ -151,7 +151,7 @@ function DeliverResources(_deliver_to, _required_resources) constructor{
 			var _item_struct = struct_get(required_resources, _item_name);
 			var _quantity_wanted = _item_struct.wanted;
 			var _expected = _item_struct.expected;
-			var _diff = _quantity_wanted -_expected;
+			var _diff = min(deliver_to.weight.remaining, (_quantity_wanted -_expected));
 			
 			show_debug_message("wanted item : " + _item_name);
 			show_debug_message("wanted _item_struct : " + string(_item_struct));
@@ -164,6 +164,7 @@ function DeliverResources(_deliver_to, _required_resources) constructor{
 			}
 			var _haul_quantity_wanted = min(5, _diff);
 			var _available_stores = [];
+			
 			//Find a store with the wanted resource
 			with parStorage{
 				var _store_item_struct = struct_get(inventory, _item_name)
@@ -206,6 +207,9 @@ function DeliverResources(_deliver_to, _required_resources) constructor{
 			var _haul_item_struct = new Item(_item_name, _item_quantity);
 			
 			_item_struct.expected += _item_quantity;
+			deliver_to.weight.current += _haul_quantity_wanted;
+			deliver_to.weight.update_remaining();
+			
 			show_debug_message("Job created to haul to building | _item_struct: " + string(_item_struct) + " | haul_item_struct: " + string(_haul_item_struct))
 				
 			array_push(global.jobs_no_worker.HAUL_ITEM, new HaulItem(,_storage, _haul_item_struct, deliver_to));	
@@ -292,43 +296,3 @@ function BuildManager(_building) constructor{
 		}
 	}
 }
-
-//function GetItem(_worker, _item_struct, _haul_to) constructor{
-//	show_debug_message("GetItem")
-//	worker = _worker;
-//	item_struct = _item_struct;
-//	haul_to = _haul_to;
-//	x = haul_to.x;
-//	y = haul_to.y;
-//	state = "INACTIVE";
-//	type = "GET_ITEM";
-//	item_name = struct_get_names(item_struct)[0]; show_debug_message("item_name: " + string(item_name));
-	
-//	static initialise = function(){
-//		//Find a container/storage with the correct resources
-//		var _stores = [];
-		
-//		with parStorage{
-//			dist = point_distance(x, y, other.worker.x, other.worker.y);
-//			array_push(_stores, id);
-//		}
-		
-//		array_sort(_stores, sort_by_distance);
-		
-//		while (array_length(_stores) > 0){
-//			var _store = array_shift(_stores);
-//			var _item_in_stock = struct_get(_store.inventory, item_name);
-			
-//			if (_item_in_stock != undefined && _item_in_stock > 0){
-//				worker.job = new HaulItem(worker, _store, item_struct, haul_to);
-//				worker.job.initialise();
-//				exit;
-//				break;
-//			}
-//		}
-		
-//		show_debug_message("GetItem could not find a valid storage")
-//		job_finished(worker);
-//		haul_to.job_failed();
-//	}
-//}

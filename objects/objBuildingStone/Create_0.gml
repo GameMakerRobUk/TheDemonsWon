@@ -44,24 +44,14 @@ building_finished = function(){
 }
 
 job_was_cancelled = function(_item_struct){
-	//show_debug_message("objBuilding job_was_cancelled")
-	//show_debug_message("Job was cancelled for a building");
-	//show_debug_message("hauled_item : _item_struct: " + string(_item_struct));
-	//show_debug_message("building inventory: " + string(inventory));
-	
 	var _item_name = _item_struct.name; show_debug_message("_item_name: " + _item_name)
 	var _quantity = _item_struct.quantity;
 	var _inventory_item = struct_get(inventory, _item_name); show_debug_message("_inventory_item: " + string(_inventory_item))
 	var _expected_quantity = _inventory_item.expected;
 	
 	_inventory_item.expected -= _quantity;
-	//show_debug_message("New inventory: " + string(inventory))
-	//struct_set(_inventory_item, "expected", (_expected_quantity - _quantity));
-		
-	//show_debug_message("Expected amount for " + _item_name + " reduced. Item quantity: " + 
-	//	string(_quantity) + " | Previous expected quantity: " + string(_expected_quantity) + 
-	//	" | new expected quantity: " + string(struct_get(_inventory_item, "expected")))
-	//show_debug_message("objBuilding job_was_cancelled finished")
+	weight.current += _quantity;
+	weight.update_remaining();
 }
 
 inventory = {};
@@ -73,6 +63,7 @@ show_debug_message("Building inventory: " + string(inventory))
 
 hp = 0;
 hp_max = 50;
+weight = new Weight(50, 0);
 
 update_cell_coords();
 

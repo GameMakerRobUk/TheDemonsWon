@@ -52,6 +52,7 @@
     {"name":"scrInit","order":11,"path":"scripts/scrInit/scrInit.yy",},
     {"name":"SortingScripts","order":6,"path":"scripts/SortingScripts/SortingScripts.yy",},
     {"name":"update_cell_coords","order":2,"path":"scripts/update_cell_coords/update_cell_coords.yy",},
+    {"name":"Weight","order":12,"path":"scripts/Weight/Weight.yy",},
     {"name":"spr_actor","order":1,"path":"sprites/spr_actor/spr_actor.yy",},
     {"name":"spr_bg","order":3,"path":"sprites/spr_bg/spr_bg.yy",},
     {"name":"spr_boulder","order":9,"path":"sprites/spr_boulder/spr_boulder.yy",},

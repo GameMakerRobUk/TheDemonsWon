@@ -75,6 +75,7 @@
     {"id":{"name":"set_node_parents","path":"scripts/set_node_parents/set_node_parents.yy",},},
     {"id":{"name":"SortingScripts","path":"scripts/SortingScripts/SortingScripts.yy",},},
     {"id":{"name":"update_cell_coords","path":"scripts/update_cell_coords/update_cell_coords.yy",},},
+    {"id":{"name":"Weight","path":"scripts/Weight/Weight.yy",},},
     {"id":{"name":"spr_actor","path":"sprites/spr_actor/spr_actor.yy",},},
     {"id":{"name":"spr_bg","path":"sprites/spr_bg/spr_bg.yy",},},
     {"id":{"name":"spr_boulder","path":"sprites/spr_boulder/spr_boulder.yy",},},
