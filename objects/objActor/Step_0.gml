@@ -16,8 +16,11 @@ if (state == ACTOR_STATE.moving){
 			target = array_pop(path);
 		}
 	}else{
-		x += sign(target.x - x);
+		var _xsign = sign(target.x - x);
+		x += _xsign;
 		y += sign(target.y - y);
+		
+		image_xscale = -_xsign;
 	}
 }
 
