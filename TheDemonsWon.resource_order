@@ -17,6 +17,7 @@
     {"name":"Sounds","order":3,"path":"folders/Sounds.yy",},
     {"name":"Sprites","order":1,"path":"folders/Sprites.yy",},
     {"name":"Characters","order":11,"path":"folders/Sprites/Characters.yy",},
+    {"name":"Hand Items","order":12,"path":"folders/Sprites/Hand Items.yy",},
     {"name":"Tile Sets","order":2,"path":"folders/Tile Sets.yy",},
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
@@ -74,5 +75,6 @@
     {"name":"ss_male_3","order":2,"path":"sprites/ss_male_3/ss_male_3.yy",},
     {"name":"ss_male_4","order":3,"path":"sprites/ss_male_4/ss_male_4.yy",},
     {"name":"ss_male_5","order":4,"path":"sprites/ss_male_5/ss_male_5.yy",},
+    {"name":"ss_pickaxe_wood","order":1,"path":"sprites/ss_pickaxe_wood/ss_pickaxe_wood.yy",},
   ],
 }

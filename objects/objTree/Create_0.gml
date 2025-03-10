@@ -29,3 +29,5 @@ die = function(){
 		job_finished(worker);	
 	}
 }
+
+required_item = "axe";

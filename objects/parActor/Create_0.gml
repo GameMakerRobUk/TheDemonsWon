@@ -35,3 +35,4 @@ race = irandom(4);
 sex = choose("male", "female");
 
 sprites = struct_get(global.sprites, sex);
+hand_item = -1;	
