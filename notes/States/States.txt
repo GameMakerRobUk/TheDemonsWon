@@ -1,0 +1,9 @@
+State system
+
+actor_states = {
+	idle : {
+		sprites : {
+		
+		}
+	}
+}

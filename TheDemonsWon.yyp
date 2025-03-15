@@ -44,6 +44,7 @@
     {"id":{"name":"Ai Movement","path":"notes/Ai Movement/Ai Movement.yy",},},
     {"id":{"name":"Jobs","path":"notes/Jobs/Jobs.yy",},},
     {"id":{"name":"Next ToDo","path":"notes/Next ToDo/Next ToDo.yy",},},
+    {"id":{"name":"States","path":"notes/States/States.yy",},},
     {"id":{"name":"objActor","path":"objects/objActor/objActor.yy",},},
     {"id":{"name":"objActorBuilder","path":"objects/objActorBuilder/objActorBuilder.yy",},},
     {"id":{"name":"objActorHauler","path":"objects/objActorHauler/objActorHauler.yy",},},

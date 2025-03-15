@@ -24,6 +24,7 @@
   "ResourceOrderSettings":[
     {"name":"Jobs","order":2,"path":"notes/Jobs/Jobs.yy",},
     {"name":"Next ToDo","order":1,"path":"notes/Next ToDo/Next ToDo.yy",},
+    {"name":"States","order":3,"path":"notes/States/States.yy",},
     {"name":"objActor","order":1,"path":"objects/objActor/objActor.yy",},
     {"name":"objActorBuilder","order":3,"path":"objects/objActorBuilder/objActorBuilder.yy",},
     {"name":"objActorHauler","order":2,"path":"objects/objActorHauler/objActorHauler.yy",},
