@@ -1,10 +1,9 @@
-enum ACTOR_STATE{
-	idle,
-	moving,
-	working,
-	thinking,
-}
-
+//enum ACTOR_STATE{
+//	idle,
+//	moving,
+//	working,
+//	thinking,
+//}
 weight = new Weight(10, 0);
 
 state_debug = ["idle", "moving", "working", "thinking"]

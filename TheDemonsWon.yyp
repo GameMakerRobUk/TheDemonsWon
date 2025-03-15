@@ -71,6 +71,7 @@
     {"id":{"name":"parStorage","path":"objects/parStorage/parStorage.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"ActorScripts","path":"scripts/ActorScripts/ActorScripts.yy",},},
+    {"id":{"name":"ActorState","path":"scripts/ActorState/ActorState.yy",},},
     {"id":{"name":"add_message","path":"scripts/add_message/add_message.yy",},},
     {"id":{"name":"create_sprite","path":"scripts/create_sprite/create_sprite.yy",},},
     {"id":{"name":"get_closest_storage","path":"scripts/get_closest_storage/get_closest_storage.yy",},},
