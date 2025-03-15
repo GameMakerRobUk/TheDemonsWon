@@ -1,4 +1,4 @@
-if (state == ACTOR_STATE.moving){
+if (state == "walk"){
 	if (x == target.x && y == target.y){
 		update_cell_coords();
 		if (array_length(path) == 0){
@@ -6,7 +6,7 @@ if (state == ACTOR_STATE.moving){
 			
 			if (job == undefined){
 				show_debug_message("job is undefined.")
-				state = ACTOR_STATE.thinking;	
+				state = "thinking";	
 				//alarm[1] = (room_speed * 1);
 			}else{
 				show_debug_message("job is defined")
@@ -24,7 +24,7 @@ if (state == ACTOR_STATE.moving){
 	}
 }
 
-if (state == ACTOR_STATE.working){
+if (state == "use"){
 	if (job == undefined)
 		exit;
 	

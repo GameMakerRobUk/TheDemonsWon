@@ -3,7 +3,7 @@ event_inherited();
 job = undefined;
 
 path = [];
-state = ACTOR_STATE.idle;
+state = "idle";//ACTOR_STATE.idle;
 
 all_nodes = [];
 with objNode{
@@ -18,7 +18,7 @@ allowed_jobs = ["HARVEST"];
 
 function default_arrived(){
 	show_debug_message("default arrived");
-	state = ACTOR_STATE.working;
+	state = "use";
 }
 arrived = default_arrived;
 

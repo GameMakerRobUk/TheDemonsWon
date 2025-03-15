@@ -1,1 +1,1 @@
-state = ACTOR_STATE.idle;
+state = "idle";

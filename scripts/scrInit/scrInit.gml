@@ -150,4 +150,15 @@ for (var _col = 1; _col <= 5; _col ++){
 
 show_debug_message("global.sprites: " + string(global.sprites));
 
+global.actor_states = { //Not used currently. At some point it might be useful to have an actor have a struct like this, with everything state-related inside it
+	"idle" : {},
+	"walk" : {},  
+	"run" : {},  
+	"jump" : {},  
+	"fall" : {},  
+	"use" : {},  
+	"die" : {}, 
+	"thinking" : {},
+}
+
 #endregion

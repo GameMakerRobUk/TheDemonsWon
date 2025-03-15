@@ -30,4 +30,4 @@ die = function(){
 	}
 }
 
-required_item = "axe";
+tool_name = "axe_wood";

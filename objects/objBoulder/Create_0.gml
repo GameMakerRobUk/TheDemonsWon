@@ -26,4 +26,4 @@ die = function(){
 	}
 }
 
-required_item = "pickaxe";
+tool_name = "pickaxe_wood";

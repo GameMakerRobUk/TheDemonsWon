@@ -9,11 +9,13 @@ function HarvestResource(_worker = noone, _target) constructor{
 	y = target.y;
 	
 	static arrived = function(){
-		worker.state = ACTOR_STATE.working;	
+		worker.state = "use";
+		worker.hand_item.name = target.tool_name;
 	}
 	
 	static cancel_job = function(){
 		worker.job_was_cancelled();
+		worker.hand_item.name = undefined;
 		worker = noone;
 		array_push(global.jobs_no_worker.HARVEST, self);
 		state = "INACTIVE";
@@ -65,7 +67,7 @@ function HaulItem(_worker, _item_container, _item_struct, _storage) constructor{
 	
 	static arrived = function(){
 		show_debug_message("HAUL_ITEM arrived");
-		worker.state = ACTOR_STATE.working;
+		worker.state = "use";
 	}
 	
 	static cancel_job = function(){
@@ -249,7 +251,7 @@ function Build(_worker, _building) constructor{
 	}
 	
 	static arrived = function(){
-		worker.state = ACTOR_STATE.working;	
+		worker.state = "use";	
 	}
 	
 	static step = function(){

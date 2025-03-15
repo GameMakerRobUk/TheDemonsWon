@@ -32,11 +32,11 @@ if (TEST_CANCELLATIONS){
 
 race = irandom(4);
 sex = choose("male", "female");
-hand_item = {name : undefined, sprites : -1};
+hand_item = {name : undefined, sprite : -1};
 
 sprites = new ActorSprites(sex, race);
 
-show_debug_message("sprites: " + string(sprites))
+show_debug_message("actor sprites: " + string(sprites))
 
 //sprites = struct_get(global.sprites, sex);
 //hand_item = -1;	

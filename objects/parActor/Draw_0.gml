@@ -1,11 +1,17 @@
 draw_self();
 
-if (hand_item != -1){
-	draw_sprite_ext(hand_item_sprites, image_index, x, y, image_xscale, 1, 0, c_white, 1);	
+if (hand_item.sprite != -1){
+	//show_debug_message("drawing hand_item sprite")
+	draw_sprite_ext(hand_item.sprite, image_index, x, y, image_xscale, 1, 0, c_white, 1);	
 }
 
 draw_set_valign(fa_bottom);
 draw_set_halign(fa_center);
 
-draw_text(x, bbox_top, state_debug[state]);
-draw_text(x, bbox_top - 20, string(inventory));
+if (job != undefined){
+	draw_text(x, y, "HAS JOB");
+	exit;
+}
+
+draw_text(x, y, "NO JOB");
+draw_text(x, y + 20, state);

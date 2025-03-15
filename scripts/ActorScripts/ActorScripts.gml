@@ -9,7 +9,7 @@ function job_finished(_worker){
 	with _worker{
 		show_debug_message("job_finished | worker inv: " + string(_worker.inventory))
 		job = undefined;
-		state = ACTOR_STATE.idle//ACTOR_STATE.thinking;
+		state = "idle"//ACTOR_STATE.thinking;
 		//alarm[1] = room_speed * 1;
 		path = [];
 	}
@@ -18,7 +18,7 @@ function job_finished(_worker){
 function move_to_pos(_cell_x, _cell_y, _actor){
 	show_debug_message("move_to_pos");
 	set_path(_cell_x, _cell_y, _actor);
-	_actor.state = ACTOR_STATE.moving;
+	_actor.state = "walk";
 }
 
 function set_path(_cell_x, _cell_y, _actor){

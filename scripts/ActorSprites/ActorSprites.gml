@@ -31,6 +31,8 @@ function ActorSprites(_sex, _race) constructor{
 		struct_set(_state_struct, "hand_items", _sex_sprites.hand_items);
 		struct_set(_state_struct, "image_speed", _state_sprites.image_speed);
 		
-		struct_set(sprites, _state, _state_struct);
+		struct_set(self, _state, _state_struct);
 	}
+	
+	thinking = idle;
 }

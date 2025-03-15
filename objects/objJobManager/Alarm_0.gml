@@ -24,7 +24,7 @@ for (var i =0; i < array_length(global.persistent_jobs); i ++){
 }
 
 with objActor{
-	if (state != ACTOR_STATE.idle){
+	if (state != "idle"){
 		//show_debug_message("Actor state is " + state_debug[state] + ". Continuing")
 		continue;
 	}
