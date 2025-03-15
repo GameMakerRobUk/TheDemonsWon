@@ -4,22 +4,22 @@
   "bboxMode":0,
   "bbox_bottom":447,
   "bbox_left":30,
-  "bbox_right":753,
-  "bbox_top":35,
+  "bbox_right":752,
+  "bbox_top":32,
   "collisionKind":1,
   "collisionTolerance":0,
   "DynamicTexturePage":false,
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"ee6c3116-e6e7-4964-9099-3372d8e201c4","name":"ee6c3116-e6e7-4964-9099-3372d8e201c4","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"42e35d31-702e-4b80-8485-7829a9af012c","name":"42e35d31-702e-4b80-8485-7829a9af012c","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
   "height":448,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"a1e000b7-8398-4782-b4ce-fd7abd5f77d7","blendMode":0,"displayName":"default","isLocked":false,"name":"a1e000b7-8398-4782-b4ce-fd7abd5f77d7","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"67f6e921-aa22-4e79-afd5-92c4cd006bba","blendMode":0,"displayName":"default","isLocked":false,"name":"67f6e921-aa22-4e79-afd5-92c4cd006bba","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"ss_fem_shirt_2",
   "nineSlice":null,
@@ -69,8 +69,8 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ee6c3116-e6e7-4964-9099-3372d8e201c4","path":"sprites/ss_fem_shirt_2/ss_fem_shirt_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"4b357034-447f-4b82-a7a0-82661d51c491","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"42e35d31-702e-4b80-8485-7829a9af012c","path":"sprites/ss_fem_shirt_2/ss_fem_shirt_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"0b9471e2-1caa-42dd-976c-6b038278b575","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

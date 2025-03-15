@@ -46,14 +46,16 @@ function ActorSprites(_sex, _race) constructor{
 		struct_set(_state_struct, "image_speed", _state_sprites.image_speed);
 		
 		if (i == 0){
-			var _pants_index = irandom(array_length(global.sprites.idle.male.clothing.pants) - 1);	
-			var _shirt_index = irandom(array_length(global.sprites.idle.male.clothing.shirt) - 1);
-			var _boots_index = irandom(array_length(global.sprites.idle.male.clothing.boots) - 1);
+			var _pants_index = irandom(array_length(_sex_sprites.clothing.pants) - 1);	
+			var _shirt_index = irandom(array_length(_sex_sprites.clothing.shirt) - 1);
+			var _boots_index = irandom(array_length(_sex_sprites.clothing.boots) - 1);
+			var _hair_index = irandom(array_length(_sex_sprites.hair) - 1);
 		}
 		
 		_state_struct.clothing.pants = _sex_sprites.clothing.pants[_pants_index];
 		_state_struct.clothing.shirt = _sex_sprites.clothing.shirt[_shirt_index];
 		_state_struct.clothing.boots = _sex_sprites.clothing.boots[_boots_index];
+		_state_struct.hair = _sex_sprites.hair[_hair_index];
 		
 		struct_set(self, _state, _state_struct);
 	}

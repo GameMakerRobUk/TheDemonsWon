@@ -15,10 +15,12 @@ global.sprites = {
 		male : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1,},
 			clothing : {shirt : [], pants : [], boots : []},
+			hair : [],
 		},
 		female : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
 			clothing : {shirt : [], pants : [], boots : []},
+			hair : [],
 		},
 		image_speed : 0.3,
 	},
@@ -26,10 +28,12 @@ global.sprites = {
 		male : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
 			clothing : {shirt : [], pants : [], boots : []},
+			hair : [],
 		},
 		female : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
 			clothing : {shirt : [], pants : [], boots : []},
+			hair : [],
 		},
 		image_speed : 0.8,
 	},
@@ -37,10 +41,12 @@ global.sprites = {
 		male : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
 			clothing : {shirt : [], pants : [], boots : []},
+			hair : [],
 		},
 		female : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
 			clothing : {shirt : [], pants : [], boots : []},
+			hair : [],
 		},
 		image_speed : 0.8,
 	},
@@ -48,10 +54,12 @@ global.sprites = {
 		male : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
 			clothing : {shirt : [], pants : [], boots : []},
+			hair : [],
 		},
 		female : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
 			clothing : {shirt : [], pants : [], boots : []},
+			hair : [],
 		},
 		image_speed : 0.3,
 	},
@@ -59,10 +67,12 @@ global.sprites = {
 		male : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
 			clothing : {shirt : [], pants : [], boots : []},
+			hair : [],
 		},
 		female : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
 			clothing : {shirt : [], pants : [], boots : []},
+			hair : [],
 		},
 		image_speed : 0.3,
 	},
@@ -70,10 +80,12 @@ global.sprites = {
 		male : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
 			clothing : {shirt : [], pants : [], boots : []},
+			hair : [],
 		},
 		female : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
 			clothing : {shirt : [], pants : [], boots : []},
+			hair : [],
 		},
 		image_speed : 0.3,
 	},
@@ -81,10 +93,12 @@ global.sprites = {
 		male : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
 			clothing : {shirt : [], pants : [], boots : []},
+			hair : [],
 		},
 		female : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
 			clothing : {shirt : [], pants : [], boots : []},
+			hair : [],
 		},
 		image_speed : 0.3,
 	},
@@ -176,7 +190,7 @@ var _state_names = [
 
 state_frames = [5,8,8,4,4,6,10]
 
-for (var i = 0; i < 10; i ++){
+for (var i = 0; i < 30; i ++){
 	var _pants = asset_get_index("ss_male_pants_" + string(i));
 	if (_pants != -1){
 		for (var j = 0; j < array_length(_state_names); j ++){
@@ -199,6 +213,14 @@ for (var i = 0; i < 10; i ++){
 			var _state = _state_names[j];
 			var _state_struct = struct_get(global.sprites, _state);
 			array_push(_state_struct.male.clothing.boots, create_sprite(_boots, 10, 7, 80, 64, j, state_frames[j], 39, 55));
+		}
+	}
+	var _hair = asset_get_index("ss_male_hair_" + string(i));
+	if (_hair != -1){
+		for (var j = 0; j < array_length(_state_names); j ++){
+			var _state = _state_names[j];
+			var _state_struct = struct_get(global.sprites, _state);
+			array_push(_state_struct.male.hair, create_sprite(_hair, 10, 7, 80, 64, j, state_frames[j], 39, 55));
 		}
 	}
 	
@@ -224,6 +246,14 @@ for (var i = 0; i < 10; i ++){
 			var _state = _state_names[j];
 			var _state_struct = struct_get(global.sprites, _state);
 			array_push(_state_struct.female.clothing.boots, create_sprite(_boots, 10, 7, 80, 64, j, state_frames[j], 39, 55));
+		}
+	}
+	var _hair = asset_get_index("ss_fem_hair_" + string(i));
+	if (_hair != -1){
+		for (var j = 0; j < array_length(_state_names); j ++){
+			var _state = _state_names[j];
+			var _state_struct = struct_get(global.sprites, _state);
+			array_push(_state_struct.female.hair, create_sprite(_hair, 10, 7, 80, 64, j, state_frames[j], 39, 55));
 		}
 	}
 }
