@@ -90,6 +90,8 @@ for (var _col = 1; _col <= 5; _col ++){
 	array_push(global.sprites.walk.male.hand_items.pickaxe_wood, create_sprite(ss_pickaxe_wood, 10, 7, 80, 64, 1, 8, 39, 55));
 	
 	array_push(global.sprites.walk.female.body, create_sprite(_ss_female, 10, 7, 80, 64, 1, 8, 39, 55));
+	array_push(global.sprites.walk.female.hand_items.axe_wood, create_sprite(ss_axe_wood, 10, 7, 80, 64, 1, 8, 39, 55));
+	array_push(global.sprites.walk.female.hand_items.pickaxe_wood, create_sprite(ss_pickaxe_wood, 10, 7, 80, 64, 1, 8, 39, 55));
 	
 	//Run
 	array_push(global.sprites.run.male.body, create_sprite(_ss_male, 10, 7, 80, 64, 2, 8, 39, 55));
@@ -97,6 +99,8 @@ for (var _col = 1; _col <= 5; _col ++){
 	array_push(global.sprites.run.male.hand_items.pickaxe_wood, create_sprite(ss_pickaxe_wood, 10, 7, 80, 64, 2, 8, 39, 55));
 	
 	array_push(global.sprites.run.female.body, create_sprite(_ss_female, 10, 7, 80, 64, 2, 8, 39, 55));
+	array_push(global.sprites.run.female.hand_items.axe_wood, create_sprite(ss_axe_wood, 10, 7, 80, 64, 1, 8, 39, 55));
+	array_push(global.sprites.run.female.hand_items.pickaxe_wood, create_sprite(ss_pickaxe_wood, 10, 7, 80, 64, 1, 8, 39, 55));
 	
 	//Jump
 	array_push(global.sprites.jump.male.body, create_sprite(_ss_male, 10, 7, 80, 64, 3, 8, 39, 55));
@@ -104,6 +108,8 @@ for (var _col = 1; _col <= 5; _col ++){
 	array_push(global.sprites.jump.male.hand_items.pickaxe_wood, create_sprite(ss_pickaxe_wood, 10, 7, 80, 64, 3, 8, 39, 55));
 	
 	array_push(global.sprites.jump.female.body, create_sprite(_ss_female, 10, 7, 80, 64, 3, 8, 39, 55));
+	array_push(global.sprites.jump.female.hand_items.axe_wood, create_sprite(ss_axe_wood, 10, 7, 80, 64, 1, 8, 39, 55));
+	array_push(global.sprites.jump.female.hand_items.pickaxe_wood, create_sprite(ss_pickaxe_wood, 10, 7, 80, 64, 1, 8, 39, 55));
 	
 	//Fall
 	array_push(global.sprites.fall.male.body, create_sprite(_ss_male, 10, 7, 80, 64, 4, 4, 39, 55));
@@ -111,6 +117,8 @@ for (var _col = 1; _col <= 5; _col ++){
 	array_push(global.sprites.fall.male.hand_items.pickaxe_wood, create_sprite(ss_pickaxe_wood, 10, 7, 80, 64, 4, 4, 39, 55));
 	
 	array_push(global.sprites.fall.female.body, create_sprite(_ss_female, 10, 7, 80, 64, 4, 4, 39, 55));
+	array_push(global.sprites.fall.female.hand_items.axe_wood, create_sprite(ss_axe_wood, 10, 7, 80, 64, 1, 8, 39, 55));
+	array_push(global.sprites.fall.female.hand_items.pickaxe_wood, create_sprite(ss_pickaxe_wood, 10, 7, 80, 64, 1, 8, 39, 55));
 	
 	//Use
 	array_push(global.sprites.use.male.body, create_sprite(_ss_male, 10, 7, 80, 64, 5, 6, 39, 55));
@@ -118,6 +126,8 @@ for (var _col = 1; _col <= 5; _col ++){
 	array_push(global.sprites.use.male.hand_items.pickaxe_wood, create_sprite(ss_pickaxe_wood, 10, 7, 80, 64, 5, 6, 39, 55));
 	
 	array_push(global.sprites.use.female.body, create_sprite(_ss_female, 10, 7, 80, 64, 5, 6, 39, 55));
+	array_push(global.sprites.use.female.hand_items.axe_wood, create_sprite(ss_axe_wood, 10, 7, 80, 64, 1, 8, 39, 55));
+	array_push(global.sprites.use.female.hand_items.pickaxe_wood, create_sprite(ss_pickaxe_wood, 10, 7, 80, 64, 1, 8, 39, 55));
 	
 	//Die
 	array_push(global.sprites.die.male.body, create_sprite(_ss_male, 10, 7, 80, 64, 6, 10, 39, 55));
@@ -125,6 +135,8 @@ for (var _col = 1; _col <= 5; _col ++){
 	array_push(global.sprites.die.male.hand_items.pickaxe_wood, create_sprite(ss_pickaxe_wood, 10, 7, 80, 64, 6, 10, 39, 55));
 	
 	array_push(global.sprites.die.female.body, create_sprite(_ss_female, 10, 7, 80, 64, 6, 10, 39, 55));
+	array_push(global.sprites.die.female.hand_items.axe_wood, create_sprite(ss_axe_wood, 10, 7, 80, 64, 1, 8, 39, 55));
+	array_push(global.sprites.die.female.hand_items.pickaxe_wood, create_sprite(ss_pickaxe_wood, 10, 7, 80, 64, 1, 8, 39, 55));
 }
 
 //array_push(global.sprites.male.hand_items.axe_wood.idle, create_sprite(ss_axe_wood, 10, 7, 80, 64, 0, 5, 39, 55));
@@ -145,27 +157,3 @@ for (var _col = 1; _col <= 5; _col ++){
 
 
 #endregion
-
-global.actor_states = {
-	idle : {
-		sprites : {},
-	},
-	walk : {
-		sprites : {},
-	},
-	run : {
-		sprites : {},
-	},
-	jump : {
-		sprites : {},
-	},
-	fall : {
-		sprites : {},
-	},	
-	use : {
-		sprites : {},
-	},
-	die : {
-		sprites : {},
-	},
-}
