@@ -13,6 +13,20 @@ function ActorSprites(_sex, _race) constructor{
 				"use" : {body : -1, hand_items : {},},  
 				"die" : {body : -1, hand_items : {},}, 
 			};
+			
+	/*
+	idle : {
+		male : {
+			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1,},
+			clothes : {shirt : [], pants : [], boots : []},
+		},
+		female : {
+			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
+			clothes : {shirt : [], pants : [], boots : []},
+		},
+		image_speed : 0.3,
+	},
+	*/
 	
 	var _names = struct_get_names(sprites);
 	
@@ -30,6 +44,16 @@ function ActorSprites(_sex, _race) constructor{
 		struct_set(_state_struct, "body", _sex_sprites.body[_race]);
 		struct_set(_state_struct, "hand_items", _sex_sprites.hand_items);
 		struct_set(_state_struct, "image_speed", _state_sprites.image_speed);
+		
+		if (i == 0){
+			var _pants_index = irandom(array_length(global.sprites.idle.male.clothing.pants) - 1);	
+			var _shirt_index = irandom(array_length(global.sprites.idle.male.clothing.shirt) - 1);
+			var _boots_index = irandom(array_length(global.sprites.idle.male.clothing.boots) - 1);
+		}
+		
+		clothing.pants = _sex_sprites.clothing.pants[_pants_index];
+		clothing.shirt = _sex_sprites.clothing.shirt[_shirt_index];
+		clothing.boots = _sex_sprites.clothing.boots[_boots_index];
 		
 		struct_set(self, _state, _state_struct);
 	}

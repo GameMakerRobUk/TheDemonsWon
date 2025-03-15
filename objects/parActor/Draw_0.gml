@@ -1,5 +1,11 @@
 draw_self();
 
+var _clothing = struct_get(sprites, state).clothing;
+
+draw_sprite(_clothing.pants, image_index, x, y);
+draw_sprite(_clothing.boots, image_index, x, y);
+draw_sprite(_clothing.shirt, image_index, x, y);
+
 if (hand_item.sprite != -1){
 	//show_debug_message("drawing hand_item sprite")
 	draw_sprite_ext(hand_item.sprite, image_index, x, y, image_xscale, 1, 0, c_white, 1);	

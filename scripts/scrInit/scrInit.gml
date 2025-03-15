@@ -14,63 +14,77 @@ global.sprites = {
 	idle : {
 		male : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1,},
+			clothing : {shirt : [], pants : [], boots : []},
 		},
 		female : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
+			clothing : {shirt : [], pants : [], boots : []},
 		},
 		image_speed : 0.3,
 	},
 	walk : {
 		male : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
+			clothing : {shirt : [], pants : [], boots : []},
 		},
 		female : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
+			clothing : {shirt : [], pants : [], boots : []},
 		},
 		image_speed : 0.8,
 	},
 	run : {
 		male : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
+			clothing : {shirt : [], pants : [], boots : []},
 		},
 		female : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
+			clothing : {shirt : [], pants : [], boots : []},
 		},
 		image_speed : 0.8,
 	},
 	jump : {
 		male : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
+			clothing : {shirt : [], pants : [], boots : []},
 		},
 		female : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
+			clothing : {shirt : [], pants : [], boots : []},
 		},
 		image_speed : 0.3,
 	},
 	fall : {
 		male : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
+			clothing : {shirt : [], pants : [], boots : []},
 		},
 		female : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
+			clothing : {shirt : [], pants : [], boots : []},
 		},
 		image_speed : 0.3,
 	},
 	use : {
 		male : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
+			clothing : {shirt : [], pants : [], boots : []},
 		},
 		female : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
+			clothing : {shirt : [], pants : [], boots : []},
 		},
 		image_speed : 0.3,
 	},
 	die : {
 		male : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
+			clothing : {shirt : [], pants : [], boots : []},
 		},
 		female : {
 			body : [], hand_items : {axe_wood : -1, pickaxe_wood : -1},
+			clothing : {shirt : [], pants : [], boots : []},
 		},
 		image_speed : 0.3,
 	},
@@ -147,6 +161,74 @@ for (var _col = 1; _col <= 5; _col ++){
 	array_push(global.sprites.die.female.body, create_sprite(_ss_female, 10, 7, 80, 64, 6, 10, 39, 55));
 
 }
+
+#region
+
+var _state_names = [
+	"idle",
+	"walk",  
+	"run",  
+	"jump",  
+	"fall",  
+	"use",  
+	"die", 
+];
+
+state_frames = [5,8,8,4,4,6,10]
+
+for (var i = 0; i < 10; i ++){
+	var _pants = asset_get_index("ss_male_pants_" + string(i));
+	if (_pants != -1){
+		for (var j = 0; j < array_length(_state_names); j ++){
+			var _state = _state_names[j];
+			var _state_struct = struct_get(global.sprites, _state);
+			array_push(_state_struct.male.clothing.pants, create_sprite(_pants, 10, 7, 80, 64, j, state_frames[j], 39, 55));
+		}
+	}
+	var _shirt = asset_get_index("ss_male_shirt_" + string(i));
+	if (_shirt != -1){
+		for (var j = 0; j < array_length(_state_names); j ++){
+			var _state = _state_names[j];
+			var _state_struct = struct_get(global.sprites, _state);
+			array_push(_state_struct.male.clothing.shirt, create_sprite(_shirt, 10, 7, 80, 64, j, state_frames[j], 39, 55));
+		}
+	}
+	var _boots = asset_get_index("ss_male_boots_" + string(i));
+	if (_boots != -1){
+		for (var j = 0; j < array_length(_state_names); j ++){
+			var _state = _state_names[j];
+			var _state_struct = struct_get(global.sprites, _state);
+			array_push(_state_struct.male.clothing.boots, create_sprite(_boots, 10, 7, 80, 64, j, state_frames[j], 39, 55));
+		}
+	}
+	
+	var _pants = asset_get_index("ss_fem_pants_" + string(i));
+	if (_pants != -1){
+		for (var j = 0; j < array_length(_state_names); j ++){
+			var _state = _state_names[j];
+			var _state_struct = struct_get(global.sprites, _state);
+			array_push(_state_struct.female.clothing.pants, create_sprite(_pants, 10, 7, 80, 64, j, state_frames[j], 39, 55));
+		}
+	}
+	var _shirt = asset_get_index("ss_fem_shirt_" + string(i));
+	if (_shirt != -1){
+		for (var j = 0; j < array_length(_state_names); j ++){
+			var _state = _state_names[j];
+			var _state_struct = struct_get(global.sprites, _state);
+			array_push(_state_struct.female.clothing.shirt, create_sprite(_shirt, 10, 7, 80, 64, j, state_frames[j], 39, 55));
+		}
+	}
+	var _boots = asset_get_index("ss_fem_boots_" + string(i));
+	if (_boots != -1){
+		for (var j = 0; j < array_length(_state_names); j ++){
+			var _state = _state_names[j];
+			var _state_struct = struct_get(global.sprites, _state);
+			array_push(_state_struct.female.clothing.boots, create_sprite(_boots, 10, 7, 80, 64, j, state_frames[j], 39, 55));
+		}
+	}
+}
+
+#endregion
 
 show_debug_message("global.sprites: " + string(global.sprites));
 
