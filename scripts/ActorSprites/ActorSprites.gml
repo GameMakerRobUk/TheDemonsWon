@@ -32,7 +32,7 @@ function ActorSprites(_sex, _race) constructor{
 	
 	for (var i = 0; i < array_length(_names); i ++){
 		var _state = _names[i];
-		var _state_struct = {}
+		var _state_struct = {clothing : {}}
 		show_debug_message("_state: " + string(_state));
 		
 		var _state_sprites = struct_get(global.sprites, _state);
@@ -51,9 +51,9 @@ function ActorSprites(_sex, _race) constructor{
 			var _boots_index = irandom(array_length(global.sprites.idle.male.clothing.boots) - 1);
 		}
 		
-		clothing.pants = _sex_sprites.clothing.pants[_pants_index];
-		clothing.shirt = _sex_sprites.clothing.shirt[_shirt_index];
-		clothing.boots = _sex_sprites.clothing.boots[_boots_index];
+		_state_struct.clothing.pants = _sex_sprites.clothing.pants[_pants_index];
+		_state_struct.clothing.shirt = _sex_sprites.clothing.shirt[_shirt_index];
+		_state_struct.clothing.boots = _sex_sprites.clothing.boots[_boots_index];
 		
 		struct_set(self, _state, _state_struct);
 	}
