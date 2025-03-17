@@ -1,5 +1,5 @@
-var _cam_xspd = (keyboard_check(ord("D")) - keyboard_check(ord("A"))) * 4;
-var _cam_yspd = (keyboard_check(ord("S")) - keyboard_check(ord("W"))) * 4;
+var _cam_xspd = (keyboard_check(ord("D")) - keyboard_check(ord("A"))) * CAM_SPEED;
+var _cam_yspd = (keyboard_check(ord("S")) - keyboard_check(ord("W"))) * CAM_SPEED;
 
 cx += _cam_xspd;
 cy += _cam_yspd;

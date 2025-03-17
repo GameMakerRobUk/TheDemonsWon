@@ -7,7 +7,7 @@ enum TREE_STAGES {
 	adult,
 }
 
-growth_stage = TREE_STAGES.adult;
+growth_stage = TREE_STAGES.sapling;
 hp = 5;
 
 alarm[0] = (room_speed * 5);

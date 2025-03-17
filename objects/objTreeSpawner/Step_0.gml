@@ -17,5 +17,6 @@ for (var i = _existing_trees; i < wanted_trees; i ++){
 		}
 	}
 	
-	instance_create_layer(_x, _y, "Harvest", objTree, {growth_stage : irandom(3)});	
+	//instance_create_layer(_x, _y, "Harvest", objTree, {growth_stage : irandom(3)});	
+	instance_create_layer(_x, _y, "Harvest", objTree, {growth_stage : 0});	
 }
