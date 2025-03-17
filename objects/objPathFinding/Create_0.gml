@@ -1,5 +1,5 @@
 global.nodes = [];
-#macro CELL_SIZE 8
+#macro CELL_SIZE 16
 
 //Create Nodes
 var _lay_id = layer_get_id("Collision");
@@ -44,5 +44,3 @@ with objNode{
 		array_push(neighbours, _list[| i]);	
 	}
 }
-
-show_debug_message("global.nodes[0][0]: " + string(global.nodes[0][0]))
