@@ -137,6 +137,33 @@ function HaulItem(_worker, _item_container, _item_struct, _storage) constructor{
 	}
 }
 
+function Farm(_deliver_to, _required_resources) constructor{
+	deliver_to = _deliver_to;
+	required_resources = _required_resources;
+	state = FARM_PLOT_STATE.plant;
+	
+	enum FARM_PLOT_STATE {
+		plant,
+		grow, //wait for plant to be fully grown
+		harvest,
+	}
+	
+	static update = function(){
+		switch state{
+			case FARM_PLOT_STATE.plant : {
+				//Create HAUL_ITEM job - take a seed to the farm plot
+			}; break;
+			case FARM_PLOT_STATE.grow : {
+				//Just check if the plant is ready to harvest
+			}; break;
+			case FARM_PLOT_STATE.harvest : {
+				//Create harvest job
+			}
+		}
+	}
+
+}
+
 function DeliverResources(_deliver_to, _required_resources) constructor{
 	show_debug_message("DeliverResources")
 	deliver_to = _deliver_to;
