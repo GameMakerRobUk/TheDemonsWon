@@ -141,6 +141,7 @@ function Farm(_deliver_to, _required_resources) constructor{
 	deliver_to = _deliver_to;
 	required_resources = _required_resources;
 	state = FARM_PLOT_STATE.plant;
+	job = undefined;
 	
 	enum FARM_PLOT_STATE {
 		plant,
@@ -152,6 +153,10 @@ function Farm(_deliver_to, _required_resources) constructor{
 		switch state{
 			case FARM_PLOT_STATE.plant : {
 				//Create HAUL_ITEM job - take a seed to the farm plot
+				if (job == undefined){
+					var _storage = get_available_storage(_item_name); //Need to code this @Rob
+					job = new HaulItem(,deliver_to, item_struct)	
+				}
 			}; break;
 			case FARM_PLOT_STATE.grow : {
 				//Just check if the plant is ready to harvest
@@ -198,45 +203,47 @@ function DeliverResources(_deliver_to, _required_resources) constructor{
 			var _haul_quantity_wanted = min(5, _quantity_diff);
 			var _available_stores = [];
 			
-			//Find a store with the wanted resource
-			with parStorage{
+			var _store = get_closest_storage(_item_name);
+			
+			////Find a store with the wanted resource
+			//with parStorage{
 				
-				if (id == other.deliver_to){
-					continue;	
-				}
-				var _store_item_struct = struct_get(inventory, _item_name)
-				if (_store_item_struct != undefined && _store_item_struct.quantity > 0){
-					get_distance(other.deliver_to);
-					array_push(_available_stores, id);	
-				}
-			}
+			//	if (id == other.deliver_to){
+			//		continue;	
+			//	}
+			//	var _store_item_struct = struct_get(inventory, _item_name)
+			//	if (_store_item_struct != undefined && _store_item_struct.quantity > 0){
+			//		get_distance(other.deliver_to);
+			//		array_push(_available_stores, id);	
+			//	}
+			//}
 			
-			with parItem{
-				if (claimed){
-					continue;
-				}
+			//with parItem{
+			//	if (claimed){
+			//		continue;
+			//	}
 				
-				var _store_item_struct = struct_get(inventory, _item_name)
-				if (_store_item_struct != undefined && _store_item_struct.quantity > 0){
-					get_distance(other.deliver_to);
-					array_push(_available_stores, id);	
-				}	
-			}
+			//	var _store_item_struct = struct_get(inventory, _item_name)
+			//	if (_store_item_struct != undefined && _store_item_struct.quantity > 0){
+			//		get_distance(other.deliver_to);
+			//		array_push(_available_stores, id);	
+			//	}	
+			//}
 			
-			if (array_length(_available_stores) == 0){
-				show_debug_message("DeliverResources no available stores")
-				exit;	
-			}
-			//Get closest store to place that wants the item
-			array_sort(_available_stores, sort_by_distance);
+			//if (array_length(_available_stores) == 0){
+			//	show_debug_message("DeliverResources no available stores")
+			//	exit;	
+			//}
+			////Get closest store to place that has the item
+			//array_sort(_available_stores, sort_by_distance);
 			
-			var _storage = array_shift(_available_stores);
-			show_debug_message("_storage: " + string(_storage));
+			//var _storage = array_shift(_available_stores);
+			//show_debug_message("_storage: " + string(_storage));
 			
-			if (object_get_parent(_storage.object_index) == parItem){
-				show_debug_message("parent is parItem");
-				_storage.claimed = true;
-			}
+			//if (object_get_parent(_storage.object_index) == parItem){
+			//	show_debug_message("parent is parItem");
+			//	_storage.claimed = true;
+			//}
 			
 			_store_item_struct = struct_get(_storage.inventory, _item_name)
 			
