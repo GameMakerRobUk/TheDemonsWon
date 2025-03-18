@@ -147,6 +147,7 @@ function Farm(_deliver_to, _required_resources) constructor{
 	required_resources = _required_resources; 
 	state = FARM_PLOT_STATE.plant;
 	job = undefined;
+	plant = noone;
 	
 	show_debug_message("Delivering to " + object_get_name(deliver_to.object_index))
 	
@@ -160,7 +161,7 @@ function Farm(_deliver_to, _required_resources) constructor{
 		//show_debug_message("FARM JOB UPDATE")
 		switch state{
 			case FARM_PLOT_STATE.plant : {
-				//show_debug_message("FARM_PLOT_STATE.plant")
+				show_debug_message("FARM_PLOT_STATE.plant")
 				//Create HAUL_ITEM job - take a seed to the farm plot
 				if (job == undefined){
 					var _item_name = struct_get_names(required_resources)[0];
@@ -202,9 +203,15 @@ function Farm(_deliver_to, _required_resources) constructor{
 				}
 			}; break;
 			case FARM_PLOT_STATE.grow : {
+				show_debug_message("FARM_PLOT_STATE.grow")
+				
 				//Just check if the plant is ready to harvest
+				if (plant.growth_stage == plant.max_growth_stage){
+					show_debug_message("READY TO HARVEST PLANT")	
+				}
 			}; break;
 			case FARM_PLOT_STATE.harvest : {
+				show_debug_message("FARM_PLOT_STATE.harvest")
 				//Create harvest job
 			}
 		}

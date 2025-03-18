@@ -9,8 +9,8 @@
   "name":"objFarmPlot",
   "overriddenProperties":[],
   "parent":{
-    "name":"Resources",
-    "path":"folders/Objects/Resources.yy",
+    "name":"Containers",
+    "path":"folders/Objects/Containers.yy",
   },
   "parentObjectId":{
     "name":"parStorage",

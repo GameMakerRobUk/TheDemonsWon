@@ -7,6 +7,9 @@ has_initialised = false;
 
 item_was_given = function(){
 	show_debug_message("Farm plot item was given");
-	job.state = FARM_PLOT_STATE.grow;
-	plant = instance_create_layer(x, y, layer, parPlant);
+	
+	if (job.plant == noone){
+		job.state = FARM_PLOT_STATE.grow;
+		job.plant = instance_create_layer(x, y, layer, parPlant);
+	}
 }
