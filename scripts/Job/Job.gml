@@ -47,18 +47,18 @@ function HarvestResource(_worker = noone, _target) constructor{
 	}
 }
 
-function HaulItem(_worker, _item_container, _item_struct, _storage) constructor{
+function HaulItem(_worker, _item_container, _item_struct, _deliver_to) constructor{
 	show_debug_message("HaulItem");
 	show_debug_message("HaulItem _item_container: " + string(_item_container))
 	show_debug_message("HaulItem object: " + object_get_name(_item_container.object_index))
 	show_debug_message("HaulItem _item_struct: " + string(_item_struct))
 	
-	show_debug_message("HaulItem _storage: " + string(_storage))
+	show_debug_message("HaulItem _deliver_to: " + string(_deliver_to))
 	worker = _worker;
 	item_container = _item_container;
 	item_struct = _item_struct;
 	item_name = item_struct.name;//struct_get_names(item_struct)[0];
-	storage = _storage;
+	deliver_to = _deliver_to;
 	x = _item_container.x;
 	y = _item_container.y;
 	
@@ -94,7 +94,7 @@ function HaulItem(_worker, _item_container, _item_struct, _storage) constructor{
 				//Make sure the resource has the same item_struct
 				struct_set(_resource.inventory, item_name, item_struct);
 				remove_item(worker, item_struct);
-				storage.job_was_cancelled(item_struct);
+				deliver_to.job_was_cancelled(item_struct);
 				
 				show_debug_message("_resource.inventory: " + string(_resource.inventory))
 				show_debug_message("HAUL_ITEM job cancelled whilst hauling. Creating new resource: " + string(_resource.inventory));
@@ -118,16 +118,20 @@ function HaulItem(_worker, _item_container, _item_struct, _storage) constructor{
 	static step = function(){
 		switch state{
 			case "INACTIVE":
+				show_debug_message("HAUL_ITEM INACTIVE");
 				if (point_distance(worker.cell_x, worker.cell_y, item_container.cell_x, item_container.cell_y) == 0){
+					show_debug_message("HAUL_ITEM WITHIN RANGE OF ITEM");
 					pickup(item_struct, item_container, worker);
-					show_debug_message("HaulItem storage object: " + object_get_name(storage.object_index));
-					move_to_pos(storage.cell_x, storage.cell_y, worker);
+					show_debug_message("HaulItem deliver_to object: " + object_get_name(deliver_to.object_index));
+					move_to_pos(deliver_to.cell_x, deliver_to.cell_y, worker);
 					state = "GO_TO_STORE";	
 				}
 				break;
 			case "GO_TO_STORE":
-				if (point_distance(worker.cell_x, worker.cell_y, storage.cell_x, storage.cell_y) == 0){
-					pickup(item_struct, worker, storage)
+				show_debug_message("HAUL_ITEM GO_TO_STORE");
+				if (point_distance(worker.cell_x, worker.cell_y, deliver_to.cell_x, deliver_to.cell_y) == 0){
+					show_debug_message("HAUL_ITEM WITHIN RANGE OF DELIVER_TO");
+					pickup(item_struct, worker, deliver_to);
 					job_finished(worker);
 					state = "JOB_FINISHED";
 				}
@@ -138,10 +142,13 @@ function HaulItem(_worker, _item_container, _item_struct, _storage) constructor{
 }
 
 function Farm(_deliver_to, _required_resources) constructor{
+	show_debug_message("Farm job created");
 	deliver_to = _deliver_to;
-	required_resources = _required_resources;
+	required_resources = _required_resources; 
 	state = FARM_PLOT_STATE.plant;
 	job = undefined;
+	
+	show_debug_message("Delivering to " + object_get_name(deliver_to.object_index))
 	
 	enum FARM_PLOT_STATE {
 		plant,
@@ -150,12 +157,48 @@ function Farm(_deliver_to, _required_resources) constructor{
 	}
 	
 	static update = function(){
+		//show_debug_message("FARM JOB UPDATE")
 		switch state{
 			case FARM_PLOT_STATE.plant : {
+				//show_debug_message("FARM_PLOT_STATE.plant")
 				//Create HAUL_ITEM job - take a seed to the farm plot
 				if (job == undefined){
-					var _storage = get_available_storage(_item_name); //Need to code this @Rob
-					job = new HaulItem(,deliver_to, item_struct)	
+					var _item_name = struct_get_names(required_resources)[0];
+					var _item_struct = struct_get(required_resources, _item_name); 
+					var _storage = get_closest_storage(_item_name, deliver_to); 
+					
+					show_debug_message("Getting SEED from " + object_get_name(_storage.object_index));
+					
+					if (_storage != noone){
+						
+						var _store_item_struct = struct_get(_storage.inventory, _item_name)
+						var _quantity_wanted = _item_struct.wanted;
+						var _expected = _item_struct.expected;
+						var _weight_per_unit = get_weight(_item_name);
+						var _max_items_based_on_weight = floor(deliver_to.weight.remaining / _weight_per_unit);
+						var _quantity_diff = min(_max_items_based_on_weight, (_quantity_wanted -_expected));
+						
+						if (_quantity_diff == 0){
+							exit;	
+						}
+						var _haul_quantity_wanted = min(5, _quantity_diff);
+			
+						var _item_quantity = min(_store_item_struct.quantity, _haul_quantity_wanted);
+						var _haul_item_struct = new Item(_item_name, _item_quantity);
+			
+						_item_struct.expected += _item_quantity;
+						deliver_to.weight.current += (_item_quantity * _weight_per_unit);
+						deliver_to.weight.update_remaining();
+			
+						job = new HaulItem(,_storage, _haul_item_struct, deliver_to);
+						array_push(global.jobs_no_worker.HAUL_ITEM, job);
+					}
+				}else{
+					var _quantity = struct_get(deliver_to.inventory.SEED, "quantity");
+					show_debug_message("SEED quantity: " + string(_quantity));
+					if (_quantity == 1){
+						show_debug_message("WE HAVE A SEED")	
+					}
 				}
 			}; break;
 			case FARM_PLOT_STATE.grow : {
@@ -201,51 +244,14 @@ function DeliverResources(_deliver_to, _required_resources) constructor{
 				continue;	
 			}
 			var _haul_quantity_wanted = min(5, _quantity_diff);
-			var _available_stores = [];
 			
-			var _store = get_closest_storage(_item_name);
+			var _storage = get_closest_storage(_item_name, deliver_to);
 			
-			////Find a store with the wanted resource
-			//with parStorage{
-				
-			//	if (id == other.deliver_to){
-			//		continue;	
-			//	}
-			//	var _store_item_struct = struct_get(inventory, _item_name)
-			//	if (_store_item_struct != undefined && _store_item_struct.quantity > 0){
-			//		get_distance(other.deliver_to);
-			//		array_push(_available_stores, id);	
-			//	}
-			//}
+			if (_storage == noone){
+				exit;	
+			}
 			
-			//with parItem{
-			//	if (claimed){
-			//		continue;
-			//	}
-				
-			//	var _store_item_struct = struct_get(inventory, _item_name)
-			//	if (_store_item_struct != undefined && _store_item_struct.quantity > 0){
-			//		get_distance(other.deliver_to);
-			//		array_push(_available_stores, id);	
-			//	}	
-			//}
-			
-			//if (array_length(_available_stores) == 0){
-			//	show_debug_message("DeliverResources no available stores")
-			//	exit;	
-			//}
-			////Get closest store to place that has the item
-			//array_sort(_available_stores, sort_by_distance);
-			
-			//var _storage = array_shift(_available_stores);
-			//show_debug_message("_storage: " + string(_storage));
-			
-			//if (object_get_parent(_storage.object_index) == parItem){
-			//	show_debug_message("parent is parItem");
-			//	_storage.claimed = true;
-			//}
-			
-			_store_item_struct = struct_get(_storage.inventory, _item_name)
+			var _store_item_struct = struct_get(_storage.inventory, _item_name)
 			
 			var _item_quantity = min(_store_item_struct.quantity, _haul_quantity_wanted);
 			var _haul_item_struct = new Item(_item_name, _item_quantity);

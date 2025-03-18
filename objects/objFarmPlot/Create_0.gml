@@ -1,3 +1,4 @@
+event_inherited();
 inventory = {};
 add_item(id, new Item("SEED", 0, 0, 1));
 

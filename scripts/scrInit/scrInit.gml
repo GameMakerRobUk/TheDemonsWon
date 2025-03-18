@@ -7,7 +7,7 @@ window_set_fullscreen(false);
 global.item_stats = {
 	LOGS : {weight : 1},
 	STONE : {weight : 2},
-	SEED : {weight : 0.1},
+	SEED : {weight : 1},
 }
 
 #region Create Sprites

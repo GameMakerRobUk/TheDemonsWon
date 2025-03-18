@@ -4,7 +4,7 @@ function Item (_name, _quantity = 0, _expected = 0, _wanted = 0) constructor{
 	expected = _expected;
 	wanted = _wanted;
 	
-	show_debug_message("new Item created with expected: " + string(expected))
+	show_debug_message("new Item created: " + string({name : name, quantity : quantity, expected : expected, wanted : wanted}))
 }
 
 function update_inventory(_inventory, _item_struct){
@@ -65,6 +65,10 @@ function remove_item(_store, _item_struct){
 	var _existing_quantity = _inventory_struct.quantity;
 	_existing_quantity = _existing_quantity == undefined? 0 : _existing_quantity;
 	var _new_quantity = max(0, _existing_quantity - _wanted_quantity);
+	
+	show_debug_message("_existing_quantity: " + string(_existing_quantity))
+	show_debug_message("_wanted_quantity: " + string(_wanted_quantity))
+	show_debug_message("_new_quantity: " + string(_new_quantity))
 		
 	struct_set(_inventory_struct, "quantity", _new_quantity);
 	struct_set(_item_struct, "quantity", min(_existing_quantity, _wanted_quantity));

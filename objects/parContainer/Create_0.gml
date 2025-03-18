@@ -15,6 +15,7 @@ item_was_taken = function(_item, _quantity){
 		return;
 	}
 	show_debug_message("NOT permanent storage");
+	show_debug_message("_quantity left: " + string(_quantity))
 	if (_quantity <= 0){
 		struct_remove(inventory, _item);
 		show_debug_message("No more of " + _item + " left, removing from container")
