@@ -9,7 +9,7 @@ function get_closest_storage(_item_name, _deliver_to = noone){
 		if (id == _deliver_to){
 			continue;	
 		}
-		var _store_item_struct = struct_get(inventory, _item_name)
+		var _store_item_struct = struct_get(inventory, _item_name);
 		if (_store_item_struct != undefined && _store_item_struct.quantity > 0){
 			get_distance(_deliver_to);
 			array_push(_available_stores, id);	
@@ -18,11 +18,14 @@ function get_closest_storage(_item_name, _deliver_to = noone){
 			
 	with parItem{
 		if (claimed){
+			show_debug_message(string(id) + " is already claimed, cannot set as store")
 			continue;
 		}
 				
-		var _store_item_struct = struct_get(inventory, _item_name)
+		var _store_item_struct = struct_get(inventory, _item_name);
+		show_debug_message("_store_item_struct: " + string(_store_item_struct));
 		if (_store_item_struct != undefined && _store_item_struct.quantity > 0){
+			show_debug_message("store has the item and has a quantity > 0")
 			get_distance(_deliver_to);
 			array_push(_available_stores, id);	
 		}	

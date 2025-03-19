@@ -155,6 +155,7 @@ function Farm(_deliver_to, _required_resources) constructor{
 		plant,
 		grow, //wait for plant to be fully grown
 		harvest,
+		wait_for_harvest,
 	}
 	
 	static update = function(){
@@ -168,32 +169,36 @@ function Farm(_deliver_to, _required_resources) constructor{
 					var _item_struct = struct_get(required_resources, _item_name); 
 					var _storage = get_closest_storage(_item_name, deliver_to); 
 					
-					show_debug_message("Getting SEED from " + object_get_name(_storage.object_index));
-					
-					if (_storage != noone){
-						
-						var _store_item_struct = struct_get(_storage.inventory, _item_name)
-						var _quantity_wanted = _item_struct.wanted;
-						var _expected = _item_struct.expected;
-						var _weight_per_unit = get_weight(_item_name);
-						var _max_items_based_on_weight = floor(deliver_to.weight.remaining / _weight_per_unit);
-						var _quantity_diff = min(_max_items_based_on_weight, (_quantity_wanted -_expected));
-						
-						if (_quantity_diff == 0){
-							exit;	
-						}
-						var _haul_quantity_wanted = min(5, _quantity_diff);
-			
-						var _item_quantity = min(_store_item_struct.quantity, _haul_quantity_wanted);
-						var _haul_item_struct = new Item(_item_name, _item_quantity);
-			
-						_item_struct.expected += _item_quantity;
-						deliver_to.weight.current += (_item_quantity * _weight_per_unit);
-						deliver_to.weight.update_remaining();
-			
-						job = new HaulItem(,_storage, _haul_item_struct, deliver_to);
-						array_push(global.jobs_no_worker.HAUL_ITEM, job);
+					if (_storage == noone){
+						show_debug_message("No storage found");
+						exit;
 					}
+					
+					show_debug_message("Getting SEED from " + object_get_name(_storage.object_index));
+						
+					var _store_item_struct = struct_get(_storage.inventory, _item_name)
+					var _quantity_wanted = _item_struct.wanted;
+					var _expected = _item_struct.expected;
+					var _weight_per_unit = get_weight(_item_name);
+					var _max_items_based_on_weight = floor(deliver_to.weight.remaining / _weight_per_unit);
+					var _quantity_diff = min(_max_items_based_on_weight, (_quantity_wanted -_expected));
+						
+					if (_quantity_diff == 0){
+						exit;	
+					}
+					var _haul_quantity_wanted = min(5, _quantity_diff);
+			
+					var _item_quantity = min(_store_item_struct.quantity, _haul_quantity_wanted);
+					var _haul_item_struct = new Item(_item_name, _item_quantity);
+					
+					show_debug_message("_haul_item_struct: " + string(_haul_item_struct))
+			
+					_item_struct.expected += _item_quantity;
+					deliver_to.weight.current += (_item_quantity * _weight_per_unit);
+					deliver_to.weight.update_remaining();
+			
+					job = new HaulItem(,_storage, _haul_item_struct, deliver_to);
+					array_push(global.jobs_no_worker.HAUL_ITEM, job);
 				}else{
 					var _quantity = struct_get(deliver_to.inventory.SEED, "quantity");
 					show_debug_message("SEED quantity: " + string(_quantity));
@@ -208,11 +213,23 @@ function Farm(_deliver_to, _required_resources) constructor{
 				//Just check if the plant is ready to harvest
 				if (plant.growth_stage == plant.max_growth_stage){
 					show_debug_message("READY TO HARVEST PLANT")	
+					state = FARM_PLOT_STATE.harvest;
 				}
 			}; break;
 			case FARM_PLOT_STATE.harvest : {
 				show_debug_message("FARM_PLOT_STATE.harvest")
 				//Create harvest job
+				job = new HarvestResource(,plant)
+				array_push(global.jobs_no_worker.HARVEST, job);	
+				state = FARM_PLOT_STATE.wait_for_harvest;
+			}; break;
+			case FARM_PLOT_STATE.wait_for_harvest : {
+				if (!instance_exists(plant)){
+					show_debug_message("plant no longer exists!");
+					job = undefined;
+					plant = undefined;
+					state = FARM_PLOT_STATE.plant;
+				}
 			}
 		}
 	}

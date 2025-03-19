@@ -52,6 +52,8 @@
     {"name":"objTest","order":14,"path":"objects/objTest/objTest.yy",},
     {"name":"objTree","order":1,"path":"objects/objTree/objTree.yy",},
     {"name":"objTreeSpawner","order":5,"path":"objects/objTreeSpawner/objTreeSpawner.yy",},
+    {"name":"parContainerCanNotTake","order":9,"path":"objects/parContainerCanNotTake/parContainerCanNotTake.yy",},
+    {"name":"parContainerCanTake","order":8,"path":"objects/parContainerCanTake/parContainerCanTake.yy",},
     {"name":"parItem","order":2,"path":"objects/parItem/parItem.yy",},
     {"name":"parPlant","order":3,"path":"objects/parPlant/parPlant.yy",},
     {"name":"parStorage","order":1,"path":"objects/parStorage/parStorage.yy",},

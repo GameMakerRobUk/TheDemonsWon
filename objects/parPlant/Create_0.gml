@@ -14,7 +14,7 @@ i_was_damaged = function(){
 }
 
 die = function(){
-	instance_create_layer(x, y, "Resource", objSeed);
+	//instance_create_layer(x, y, "Resource", objSeed);
 	instance_destroy();	
 	
 	with job{
@@ -24,4 +24,4 @@ die = function(){
 	}
 }
 
-tool_name = "";
+tool_name = undefined;

@@ -75,6 +75,8 @@
     {"id":{"name":"objTreeSpawner","path":"objects/objTreeSpawner/objTreeSpawner.yy",},},
     {"id":{"name":"parActor","path":"objects/parActor/parActor.yy",},},
     {"id":{"name":"parContainer","path":"objects/parContainer/parContainer.yy",},},
+    {"id":{"name":"parContainerCanNotTake","path":"objects/parContainerCanNotTake/parContainerCanNotTake.yy",},},
+    {"id":{"name":"parContainerCanTake","path":"objects/parContainerCanTake/parContainerCanTake.yy",},},
     {"id":{"name":"parItem","path":"objects/parItem/parItem.yy",},},
     {"id":{"name":"parPlant","path":"objects/parPlant/parPlant.yy",},},
     {"id":{"name":"parResource","path":"objects/parResource/parResource.yy",},},

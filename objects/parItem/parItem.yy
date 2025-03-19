@@ -12,8 +12,8 @@
     "path":"folders/Objects/Containers.yy",
   },
   "parentObjectId":{
-    "name":"parContainer",
-    "path":"objects/parContainer/parContainer.yy",
+    "name":"parContainerCanTake",
+    "path":"objects/parContainerCanTake/parContainerCanTake.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

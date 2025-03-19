@@ -83,7 +83,7 @@ function remove_item(_store, _item_struct){
 function pickup(_item_struct, _store, _taker){
 	show_debug_message("pickup");
 	show_debug_message("_item_struct: " + string(_item_struct))
-	show_debug_message("store: " + string(_store));
+	show_debug_message("store: " + string(object_get_name(_store.object_index)));
 	
 	_item_struct = remove_item(_store, _item_struct);
 	add_item(_taker, _item_struct);
