@@ -149,7 +149,7 @@ function Farm(_deliver_to, _required_resources) constructor{
 	job = undefined;
 	plant = noone;
 	
-	show_debug_message("Delivering to " + object_get_name(deliver_to.object_index))
+	show_debug_message("Delivering to " + object_get_name(deliver_to.object_index));
 	
 	enum FARM_PLOT_STATE {
 		plant,
@@ -162,12 +162,15 @@ function Farm(_deliver_to, _required_resources) constructor{
 		//show_debug_message("FARM JOB UPDATE")
 		switch state{
 			case FARM_PLOT_STATE.plant : {
-				show_debug_message("FARM_PLOT_STATE.plant")
+				show_debug_message("FARM_PLOT_STATE.plant");
+				show_debug_message("required_resources: " + string(required_resources));
 				//Create HAUL_ITEM job - take a seed to the farm plot
 				if (job == undefined){
 					var _item_name = struct_get_names(required_resources)[0];
 					var _item_struct = struct_get(required_resources, _item_name); 
 					var _storage = get_closest_storage(_item_name, deliver_to); 
+					
+					show_debug_message("_item_struct: " + string(_item_struct))
 					
 					if (_storage == noone){
 						show_debug_message("No storage found");
@@ -227,8 +230,9 @@ function Farm(_deliver_to, _required_resources) constructor{
 				if (!instance_exists(plant)){
 					show_debug_message("plant no longer exists!");
 					job = undefined;
-					plant = undefined;
+					plant = noone;
 					state = FARM_PLOT_STATE.plant;
+					required_resources = deliver_to.inventory;
 				}
 			}
 		}

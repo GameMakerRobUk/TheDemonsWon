@@ -13,7 +13,7 @@ if (sprite_index != _state_sprites.body){
 //show_debug_message("_state_sprites.hand_items: " + string(_state_sprites.hand_items))
 if (hand_item.name != undefined && hand_item.sprite != struct_get(_state_sprites.hand_items, hand_item.name)){
 	hand_item.sprite = struct_get(_state_sprites.hand_items, hand_item.name);
-	show_debug_message("setting hand_item sprites to " + string(hand_item.sprite))
+	//show_debug_message("setting hand_item sprites to " + string(hand_item.sprite))
 }
 
 //if (state == ACTOR_STATE.moving){
