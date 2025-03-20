@@ -155,7 +155,6 @@ function Farm(_deliver_to, _required_resources) constructor{
 		plant,
 		grow, //wait for plant to be fully grown
 		harvest,
-		wait_for_harvest,
 	}
 	
 	static update = function(){
@@ -166,6 +165,7 @@ function Farm(_deliver_to, _required_resources) constructor{
 				show_debug_message("required_resources: " + string(required_resources));
 				//Create HAUL_ITEM job - take a seed to the farm plot
 				if (job == undefined){
+					show_debug_message("job is not defined")
 					var _item_name = struct_get_names(required_resources)[0];
 					var _item_struct = struct_get(required_resources, _item_name); 
 					var _storage = get_closest_storage(_item_name, deliver_to); 
@@ -220,13 +220,6 @@ function Farm(_deliver_to, _required_resources) constructor{
 				}
 			}; break;
 			case FARM_PLOT_STATE.harvest : {
-				show_debug_message("FARM_PLOT_STATE.harvest")
-				//Create harvest job
-				job = new HarvestResource(,plant)
-				array_push(global.jobs_no_worker.HARVEST, job);	
-				state = FARM_PLOT_STATE.wait_for_harvest;
-			}; break;
-			case FARM_PLOT_STATE.wait_for_harvest : {
 				if (!instance_exists(plant)){
 					show_debug_message("plant no longer exists!");
 					job = undefined;
@@ -235,6 +228,22 @@ function Farm(_deliver_to, _required_resources) constructor{
 					required_resources = deliver_to.inventory;
 				}
 			}
+			//case FARM_PLOT_STATE.harvest : {
+			//	show_debug_message("FARM_PLOT_STATE.harvest")
+			//	//Create harvest job
+			//	job = new HarvestResource(,plant)
+			//	array_push(global.jobs_no_worker.HARVEST, job);	
+			//	state = FARM_PLOT_STATE.wait_for_harvest;
+			//}; break;
+			//case FARM_PLOT_STATE.wait_for_harvest : {
+			//	if (!instance_exists(plant)){
+			//		show_debug_message("plant no longer exists!");
+			//		job = undefined;
+			//		plant = noone;
+			//		state = FARM_PLOT_STATE.plant;
+			//		required_resources = deliver_to.inventory;
+			//	}
+			//}
 		}
 	}
 

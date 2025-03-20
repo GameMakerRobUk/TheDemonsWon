@@ -13,7 +13,6 @@
     {"name":"inst_5EC11791","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_1D0EAF62","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_29987F11","path":"rooms/Room1/Room1.yy",},
-    {"name":"inst_3D106805","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_1CCD96C1","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_4252C3DA","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_2B95A8A7","path":"rooms/Room1/Room1.yy",},
@@ -21,7 +20,8 @@
     {"name":"inst_EFD6CAB","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_6791A468","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_D5A91F9","path":"rooms/Room1/Room1.yy",},
-    {"name":"inst_3E96EDC2","path":"rooms/Room1/Room1.yy",},
+    {"name":"inst_5A1510AF","path":"rooms/Room1/Room1.yy",},
+    {"name":"inst_276F3585","path":"rooms/Room1/Room1.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -46,8 +46,8 @@
         {"$GMRInstance":"","%Name":"inst_D5A91F9","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_D5A91F9","objectId":{"name":"objSeed","path":"objects/objSeed/objSeed.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":496.0,"y":320.0,},
       ],"layers":[],"name":"Resource","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Harvest","depth":300,"effectEnabled":true,"effectType":null,"gridX":8,"gridY":8,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
-        {"$GMRInstance":"","%Name":"inst_3D106805","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_3D106805","objectId":{"name":"objFarmPlot","path":"objects/objFarmPlot/objFarmPlot.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":944.0,"y":256.0,},
-        {"$GMRInstance":"","%Name":"inst_3E96EDC2","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_3E96EDC2","objectId":{"name":"objFarmPlot","path":"objects/objFarmPlot/objFarmPlot.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":744.0,"y":320.0,},
+        {"$GMRInstance":"","%Name":"inst_5A1510AF","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_5A1510AF","objectId":{"name":"objTree","path":"objects/objTree/objTree.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":600.0,"y":320.0,},
+        {"$GMRInstance":"","%Name":"inst_276F3585","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_276F3585","objectId":{"name":"objFarmPlot","path":"objects/objFarmPlot/objFarmPlot.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":920.0,"y":256.0,},
       ],"layers":[],"name":"Harvest","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Buildings","depth":400,"effectEnabled":true,"effectType":null,"gridX":8,"gridY":8,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[],"name":"Buildings","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Nodes","depth":500,"effectEnabled":true,"effectType":null,"gridX":8,"gridY":8,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[],"name":"Nodes","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},

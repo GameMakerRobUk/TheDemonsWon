@@ -8,15 +8,15 @@ with objBoulder{
 	array_push(global.jobs_no_worker.HARVEST, new HarvestResource(,id));	
 }
 
-with objTree{
-	if (job != undefined){
-		continue;
-	}
-	if (growth_stage == TREE_STAGES.adult){
-		//var _harvest_jobs = struct_get(global.jobs_no_worker, "CHOP_TREE");
-		array_push(global.jobs_no_worker.HARVEST, new HarvestResource(,id));
-	}
-}
+//with objTree{
+//	if (job != undefined){
+//		continue;
+//	}
+//	if (growth_stage == TREE_STAGES.adult){
+//		//var _harvest_jobs = struct_get(global.jobs_no_worker, "CHOP_TREE");
+//		array_push(global.jobs_no_worker.HARVEST, new HarvestResource(,id));
+//	}
+//}
 
 for (var i =0; i < array_length(global.persistent_jobs); i ++){
 	show_debug_message("Updating for persistent job from objJobManager")

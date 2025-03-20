@@ -1,19 +1,21 @@
 {
   "$GMObject":"",
-  "%Name":"parPlant",
+  "%Name":"parResourceGrow",
   "eventList":[
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"parPlant",
+  "name":"parResourceGrow",
   "overriddenProperties":[],
   "parent":{
     "name":"Resources",
     "path":"folders/Objects/Resources.yy",
   },
   "parentObjectId":{
-    "name":"parResourceGrow",
-    "path":"objects/parResourceGrow/parResourceGrow.yy",
+    "name":"parResource",
+    "path":"objects/parResource/parResource.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -32,10 +34,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_plant_1",
-    "path":"sprites/spr_plant_1/spr_plant_1.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }
