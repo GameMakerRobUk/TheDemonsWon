@@ -1,3 +1,38 @@
+function create_job_for_resource(_deliver_to, _item_struct, _item_name){
+	var _quantity_wanted = _item_struct.wanted;
+	var _expected = _item_struct.expected;
+	var _weight_per_unit = get_weight(_item_name);
+	var _max_items_based_on_weight = floor(_deliver_to.weight.remaining / _weight_per_unit);
+	var _quantity_diff = min(_max_items_based_on_weight, (_quantity_wanted -_expected));
+			
+	if (_quantity_diff == 0){
+		return;	
+	}
+	var _haul_quantity_wanted = min(5, _quantity_diff);
+			
+	var _storage = get_closest_storage(_item_name, _deliver_to);
+			
+	if (_storage == noone){
+		return;	
+	}
+			
+	var _store_item_struct = struct_get(_storage.inventory, _item_name)
+			
+	var _item_quantity = min(_store_item_struct.quantity, _haul_quantity_wanted);
+	var _haul_item_struct = new Item(_item_name, _item_quantity);
+			
+	_item_struct.expected += _item_quantity;
+	_deliver_to.weight.current += (_item_quantity * _weight_per_unit);
+	_deliver_to.weight.update_remaining();
+	
+	show_debug_message("create_job_for_resource _storage: " + string(_storage) + " | " + object_get_name(_storage.object_index));
+	
+	var _job = new HaulItem(,_storage, _haul_item_struct, _deliver_to);
+				
+	array_push(global.jobs_no_worker.HAUL_ITEM, _job);	
+	return _job;
+}
+
 function HarvestResource(_worker = noone, _target) constructor{
 	worker = _worker;
 	target = _target;
@@ -47,6 +82,7 @@ function HarvestResource(_worker = noone, _target) constructor{
 }
 
 function HaulItem(_worker, _item_container, _item_struct, _deliver_to) constructor{
+	show_debug_message("HaulItem");
 	worker = _worker;
 	item_container = _item_container;
 	item_struct = _item_struct;
@@ -94,6 +130,8 @@ function HaulItem(_worker, _item_container, _item_struct, _deliver_to) construct
 	}
 	
 	static initialise = function(){
+		show_debug_message("item_container: " + string(item_container) );
+		show_debug_message(string(item_container) + " exists: " + string(instance_exists(item_container)))
 		move_to_pos(item_container.cell_x, item_container.cell_y, worker);
 	}
 	
@@ -135,49 +173,52 @@ function Farm(_deliver_to, _required_resources) constructor{
 		//show_debug_message("FARM JOB UPDATE")
 		switch state{
 			case FARM_PLOT_STATE.plant : {
+				show_debug_message("FARM_PLOT_STATE.plant")
 				//Create HAUL_ITEM job - take a seed to the farm plot
 				if (job == undefined){
+					show_debug_message("Farm job is undefined for planting")
+					//var _item_name = struct_get_names(required_resources)[0];
+					//var _item_struct = struct_get(required_resources, _item_name); 
+					//var _storage = get_closest_storage(_item_name, deliver_to); 
+					
+					//if (_storage == noone){
+					//	exit;
+					//}
+						
+					//var _store_item_struct = struct_get(_storage.inventory, _item_name)
+					//var _quantity_wanted = _item_struct.wanted;
+					//var _expected = _item_struct.expected;
+					//var _weight_per_unit = get_weight(_item_name);
+					//var _max_items_based_on_weight = floor(deliver_to.weight.remaining / _weight_per_unit);
+					//var _quantity_diff = min(_max_items_based_on_weight, (_quantity_wanted -_expected));
+						
+					//if (_quantity_diff == 0){
+					//	exit;	
+					//}
+					//var _haul_quantity_wanted = min(5, _quantity_diff);
+			
+					//var _item_quantity = min(_store_item_struct.quantity, _haul_quantity_wanted);
+					//var _haul_item_struct = new Item(_item_name, _item_quantity);
+			
+					//_item_struct.expected += _item_quantity;
+					//deliver_to.weight.current += (_item_quantity * _weight_per_unit);
+					//deliver_to.weight.update_remaining();
 					var _item_name = struct_get_names(required_resources)[0];
 					var _item_struct = struct_get(required_resources, _item_name); 
-					var _storage = get_closest_storage(_item_name, deliver_to); 
-					
-					if (_storage == noone){
-						exit;
-					}
-						
-					var _store_item_struct = struct_get(_storage.inventory, _item_name)
-					var _quantity_wanted = _item_struct.wanted;
-					var _expected = _item_struct.expected;
-					var _weight_per_unit = get_weight(_item_name);
-					var _max_items_based_on_weight = floor(deliver_to.weight.remaining / _weight_per_unit);
-					var _quantity_diff = min(_max_items_based_on_weight, (_quantity_wanted -_expected));
-						
-					if (_quantity_diff == 0){
-						exit;	
-					}
-					var _haul_quantity_wanted = min(5, _quantity_diff);
-			
-					var _item_quantity = min(_store_item_struct.quantity, _haul_quantity_wanted);
-					var _haul_item_struct = new Item(_item_name, _item_quantity);
-			
-					_item_struct.expected += _item_quantity;
-					deliver_to.weight.current += (_item_quantity * _weight_per_unit);
-					deliver_to.weight.update_remaining();
-			
-					job = new HaulItem(,_storage, _haul_item_struct, deliver_to);
-					array_push(global.jobs_no_worker.HAUL_ITEM, job);
+					job = create_job_for_resource(deliver_to, _item_struct, _item_name);
 				}else{
 					var _quantity = struct_get(deliver_to.inventory.SEED, "quantity");
 				}
 			}; break;
 			case FARM_PLOT_STATE.grow : {
-				
+				show_debug_message("FARM_PLOT_STATE.grow")
 				//Just check if the plant is ready to harvest
 				if (plant.growth_stage == plant.max_growth_stage){
 					state = FARM_PLOT_STATE.harvest;
 				}
 			}; break;
 			case FARM_PLOT_STATE.harvest : {
+				show_debug_message("FARM_PLOT_STATE.harvest")
 				if (!instance_exists(plant)){
 					job = undefined;
 					plant = noone;
@@ -200,33 +241,7 @@ function DeliverResources(_deliver_to, _required_resources) constructor{
 		for (var i = 0; i < array_length(_item_names); i ++){
 			var _item_name = _item_names[i];
 			var _item_struct = struct_get(required_resources, _item_name);
-			var _quantity_wanted = _item_struct.wanted;
-			var _expected = _item_struct.expected;
-			var _weight_per_unit = get_weight(_item_name);
-			var _max_items_based_on_weight = floor(deliver_to.weight.remaining / _weight_per_unit);
-			var _quantity_diff = min(_max_items_based_on_weight, (_quantity_wanted -_expected));
-			
-			if (_quantity_diff == 0){
-				continue;	
-			}
-			var _haul_quantity_wanted = min(5, _quantity_diff);
-			
-			var _storage = get_closest_storage(_item_name, deliver_to);
-			
-			if (_storage == noone){
-				exit;	
-			}
-			
-			var _store_item_struct = struct_get(_storage.inventory, _item_name)
-			
-			var _item_quantity = min(_store_item_struct.quantity, _haul_quantity_wanted);
-			var _haul_item_struct = new Item(_item_name, _item_quantity);
-			
-			_item_struct.expected += _item_quantity;
-			deliver_to.weight.current += (_item_quantity * _weight_per_unit);
-			deliver_to.weight.update_remaining();
-				
-			array_push(global.jobs_no_worker.HAUL_ITEM, new HaulItem(,_storage, _haul_item_struct, deliver_to));	
+			create_job_for_resource(deliver_to, _item_struct, _item_name);
 		}
 	}
 }
