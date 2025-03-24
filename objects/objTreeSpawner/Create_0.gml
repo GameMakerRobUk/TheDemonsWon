@@ -1,4 +1,4 @@
-wanted_trees = 0;//10;
+wanted_trees = 10;
 
 all_nodes = [];
 with objNode{

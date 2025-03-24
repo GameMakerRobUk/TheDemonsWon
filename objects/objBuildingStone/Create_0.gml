@@ -64,7 +64,7 @@ show_debug_message("Building inventory: " + string(inventory))
 
 hp = 0;
 hp_max = 50;
-weight = new Weight(50, 0);
+weight = new Weight(200, 0);
 
 update_cell_coords();
 

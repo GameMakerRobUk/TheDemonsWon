@@ -170,39 +170,12 @@ function Farm(_deliver_to, _required_resources) constructor{
 	}
 	
 	static update = function(){
-		//show_debug_message("FARM JOB UPDATE")
 		switch state{
 			case FARM_PLOT_STATE.plant : {
 				show_debug_message("FARM_PLOT_STATE.plant")
 				//Create HAUL_ITEM job - take a seed to the farm plot
 				if (job == undefined){
 					show_debug_message("Farm job is undefined for planting")
-					//var _item_name = struct_get_names(required_resources)[0];
-					//var _item_struct = struct_get(required_resources, _item_name); 
-					//var _storage = get_closest_storage(_item_name, deliver_to); 
-					
-					//if (_storage == noone){
-					//	exit;
-					//}
-						
-					//var _store_item_struct = struct_get(_storage.inventory, _item_name)
-					//var _quantity_wanted = _item_struct.wanted;
-					//var _expected = _item_struct.expected;
-					//var _weight_per_unit = get_weight(_item_name);
-					//var _max_items_based_on_weight = floor(deliver_to.weight.remaining / _weight_per_unit);
-					//var _quantity_diff = min(_max_items_based_on_weight, (_quantity_wanted -_expected));
-						
-					//if (_quantity_diff == 0){
-					//	exit;	
-					//}
-					//var _haul_quantity_wanted = min(5, _quantity_diff);
-			
-					//var _item_quantity = min(_store_item_struct.quantity, _haul_quantity_wanted);
-					//var _haul_item_struct = new Item(_item_name, _item_quantity);
-			
-					//_item_struct.expected += _item_quantity;
-					//deliver_to.weight.current += (_item_quantity * _weight_per_unit);
-					//deliver_to.weight.update_remaining();
 					var _item_name = struct_get_names(required_resources)[0];
 					var _item_struct = struct_get(required_resources, _item_name); 
 					job = create_job_for_resource(deliver_to, _item_struct, _item_name);
