@@ -85,7 +85,7 @@ function HarvestResource(_worker = noone, _target) : Job() constructor{
 	}
 }
 
-function HaulItem(_worker, _item_container, _item_struct, _deliver_to) : Job() constructor{
+function HaulItem(_worker, _item_container, _item_struct, _deliver_to, _priority) : Job() constructor{
 	show_debug_message("HaulItem");
 	worker = _worker;
 	item_container = _item_container;
@@ -143,14 +143,14 @@ function HaulItem(_worker, _item_container, _item_struct, _deliver_to) : Job() c
 		switch state{
 			case "INACTIVE":
 				if (point_distance(worker.cell_x, worker.cell_y, item_container.cell_x, item_container.cell_y) == 0){
-					pickup(item_struct, item_container, worker);
+					pickup(item_struct, item_container, worker, _priority);
 					move_to_pos(deliver_to.cell_x, deliver_to.cell_y, worker);
 					state = "GO_TO_STORE";	
 				}
 				break;
 			case "GO_TO_STORE":
 				if (point_distance(worker.cell_x, worker.cell_y, deliver_to.cell_x, deliver_to.cell_y) == 0){
-					pickup(item_struct, worker, deliver_to);
+					pickup(item_struct, worker, deliver_to, _priority);
 					job_finished(worker);
 					state = "JOB_FINISHED";
 				}
@@ -222,7 +222,7 @@ function Farm(_deliver_to, _required_resources) : Job() constructor{
 
 }
 
-function DeliverResources(_deliver_to, _required_resources) : Job() constructor{
+function DeliverResources(_deliver_to, _required_resources, _priority) : Job() constructor{
 	deliver_to = _deliver_to;
 	required_resources = _required_resources;
 	inventory = deliver_to.inventory;
@@ -232,7 +232,7 @@ function DeliverResources(_deliver_to, _required_resources) : Job() constructor{
 		for (var i = 0; i < array_length(_item_names); i ++){
 			var _item_name = _item_names[i];
 			var _item_struct = struct_get(required_resources, _item_name);
-			create_job_for_resource(deliver_to, _item_struct, _item_name);
+			create_job_for_resource(deliver_to, _item_struct, _item_name, _priority);
 		}
 	}
 }
