@@ -1,39 +1,43 @@
-function create_job_for_resource(_deliver_to, _item_struct, _item_name){
-	var _quantity_wanted = _item_struct.wanted;
-	var _expected = _item_struct.expected;
-	var _weight_per_unit = get_weight(_item_name);
-	var _max_items_based_on_weight = floor(_deliver_to.weight.remaining / _weight_per_unit);
-	var _quantity_diff = min(_max_items_based_on_weight, (_quantity_wanted -_expected));
-			
-	if (_quantity_diff == 0){
-		return;	
-	}
-	var _haul_quantity_wanted = min(5, _quantity_diff);
-			
-	var _storage = get_closest_storage(_item_name, _deliver_to);
-			
-	if (_storage == noone){
-		return;	
-	}
-			
-	var _store_item_struct = struct_get(_storage.inventory, _item_name)
-			
-	var _item_quantity = min(_store_item_struct.quantity, _haul_quantity_wanted);
-	var _haul_item_struct = new Item(_item_name, _item_quantity);
-			
-	_item_struct.expected += _item_quantity;
-	_deliver_to.weight.current += (_item_quantity * _weight_per_unit);
-	_deliver_to.weight.update_remaining();
+function Job() constructor{
+	priority = 0;	
 	
-	show_debug_message("create_job_for_resource _storage: " + string(_storage) + " | " + object_get_name(_storage.object_index));
+	static create_job_for_resource = function(_deliver_to, _item_struct, _item_name){
+		var _quantity_wanted = _item_struct.wanted;
+		var _expected = _item_struct.expected;
+		var _weight_per_unit = get_weight(_item_name);
+		var _max_items_based_on_weight = floor(_deliver_to.weight.remaining / _weight_per_unit);
+		var _quantity_diff = min(_max_items_based_on_weight, (_quantity_wanted -_expected));
+			
+		if (_quantity_diff == 0){
+			return;	
+		}
+		var _haul_quantity_wanted = min(5, _quantity_diff);
+			
+		var _storage = get_closest_storage(_item_name, _deliver_to);
+			
+		if (_storage == noone){
+			return;	
+		}
+			
+		var _store_item_struct = struct_get(_storage.inventory, _item_name)
+			
+		var _item_quantity = min(_store_item_struct.quantity, _haul_quantity_wanted);
+		var _haul_item_struct = new Item(_item_name, _item_quantity);
+			
+		_item_struct.expected += _item_quantity;
+		_deliver_to.weight.current += (_item_quantity * _weight_per_unit);
+		_deliver_to.weight.update_remaining();
 	
-	var _job = new HaulItem(,_storage, _haul_item_struct, _deliver_to);
+		show_debug_message("create_job_for_resource _storage: " + string(_storage) + " | " + object_get_name(_storage.object_index));
+	
+		var _job = new HaulItem(,_storage, _haul_item_struct, _deliver_to);
 				
-	array_push(global.jobs_no_worker.HAUL_ITEM, _job);	
-	return _job;
+		array_push(global.jobs_no_worker.HAUL_ITEM, _job);	
+		return _job;
+	}
 }
 
-function HarvestResource(_worker = noone, _target) constructor{
+function HarvestResource(_worker = noone, _target) : Job() constructor{
 	worker = _worker;
 	target = _target;
 	type = "HARVEST";
@@ -81,7 +85,7 @@ function HarvestResource(_worker = noone, _target) constructor{
 	}
 }
 
-function HaulItem(_worker, _item_container, _item_struct, _deliver_to) constructor{
+function HaulItem(_worker, _item_container, _item_struct, _deliver_to) : Job() constructor{
 	show_debug_message("HaulItem");
 	worker = _worker;
 	item_container = _item_container;
@@ -156,7 +160,7 @@ function HaulItem(_worker, _item_container, _item_struct, _deliver_to) construct
 	}
 }
 
-function Farm(_deliver_to, _required_resources) constructor{
+function Farm(_deliver_to, _required_resources) : Job() constructor{
 	deliver_to = _deliver_to;
 	required_resources = _required_resources; 
 	state = FARM_PLOT_STATE.plant;
@@ -218,7 +222,7 @@ function Farm(_deliver_to, _required_resources) constructor{
 
 }
 
-function DeliverResources(_deliver_to, _required_resources) constructor{
+function DeliverResources(_deliver_to, _required_resources) : Job() constructor{
 	deliver_to = _deliver_to;
 	required_resources = _required_resources;
 	inventory = deliver_to.inventory;
@@ -233,7 +237,7 @@ function DeliverResources(_deliver_to, _required_resources) constructor{
 	}
 }
 
-function Build(_worker, _building) constructor{
+function Build(_worker, _building) : Job() constructor{
 	worker = _worker;
 	building = _building;
 	type = "BUILD";
@@ -292,7 +296,7 @@ function Build(_worker, _building) constructor{
 	}
 }
 
-function BuildManager(_building) constructor{
+function BuildManager(_building) : Job () constructor{
 	jobs = [];
 	max_jobs = 2;
 	building = _building;
