@@ -6,7 +6,7 @@ with objBoulder{
 		continue;
 	}
 	//array_push(global.jobs_no_worker.HARVEST, new HarvestResource(,id));	
-	add_job(global.jobs_no_worker.HARVEST, new HarvestResource(,id), priority);
+	add_job(global.jobs_no_worker.HARVEST, new HarvestResource(,id));
 }
 
 //with objTree{

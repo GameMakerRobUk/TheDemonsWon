@@ -148,14 +148,14 @@ function HaulItem(_worker, _item_container, _item_struct, _deliver_to, _priority
 		switch state{
 			case "INACTIVE":
 				if (point_distance(worker.cell_x, worker.cell_y, item_container.cell_x, item_container.cell_y) == 0){
-					exchange_item(item_struct, item_container, worker, _priority);
+					exchange_item(item_struct, item_container, worker);
 					move_to_pos(deliver_to.cell_x, deliver_to.cell_y, worker);
 					state = "GO_TO_STORE";	
 				}
 				break;
 			case "GO_TO_STORE":
 				if (point_distance(worker.cell_x, worker.cell_y, deliver_to.cell_x, deliver_to.cell_y) == 0){
-					exchange_item(item_struct, worker, deliver_to, _priority);
+					exchange_item(item_struct, worker, deliver_to);
 					job_finished(worker);
 					state = "JOB_FINISHED";
 				}
@@ -323,7 +323,7 @@ function BuildManager(_building, _priority = 1) : Job () constructor{
 	}
 }
 
-function add_job(_array, _job, _priority){
+function add_job(_array, _job, _priority = 0){
 	array_push(_array, _job);	
 	array_sort(_array, sort_by_priority);
 }
