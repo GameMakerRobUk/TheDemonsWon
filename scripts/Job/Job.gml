@@ -169,6 +169,20 @@ function Farm(_deliver_to, _required_resources) constructor{
 		harvest,
 	}
 	
+	static cancel_job = function(){
+		switch state{
+			case FARM_PLOT_STATE.plant : {
+				//Taken care of by HaulItem cancellation
+			}; break
+			case FARM_PLOT_STATE.grow : {
+				//No workers will be assigned at this point
+			}; break;
+			case FARM_PLOT_STATE.harvest : {
+				//Taken care of by HarvestResource cancellation
+			}; break;
+		}
+	}
+	
 	static update = function(){
 		switch state{
 			case FARM_PLOT_STATE.plant : {
