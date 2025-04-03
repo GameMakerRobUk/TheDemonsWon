@@ -5,6 +5,7 @@ if (growth_stage < max_growth_stage){
 	if (job != undefined){
 		exit;
 	}
-	array_push(global.jobs_no_worker.HARVEST, new HarvestResource(,id));
+	//array_push(global.jobs_no_worker.HARVEST, new HarvestResource(,id));
+	add_job(global.jobs_no_worker.HARVEST, new HarvestResource(,id));
 }
 

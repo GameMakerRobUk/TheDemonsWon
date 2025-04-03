@@ -32,12 +32,13 @@ function Job() constructor{
 	
 		var _job = new HaulItem(,_storage, _haul_item_struct, _deliver_to);
 				
-		array_push(global.jobs_no_worker.HAUL_ITEM, _job);	
+		//array_push(global.jobs_no_worker.HAUL_ITEM, _job);	
+		add_job(global.jobs_no_worker.HAUL_ITEM, _job, priority);
 		return _job;
 	}
 }
 
-function HarvestResource(_worker = noone, _target) : Job() constructor{
+function HarvestResource(_worker = noone, _target, _priority = 0) : Job() constructor{
 	worker = _worker;
 	target = _target;
 	type = "HARVEST";
@@ -46,6 +47,7 @@ function HarvestResource(_worker = noone, _target) : Job() constructor{
 	target.job = self;
 	x = target.x;
 	y = target.y;
+	priority = _priority;
 	
 	static arrived = function(){
 		worker.state = "use";
@@ -56,7 +58,8 @@ function HarvestResource(_worker = noone, _target) : Job() constructor{
 		worker.job_was_cancelled();
 		worker.hand_item.name = undefined;
 		worker = noone;
-		array_push(global.jobs_no_worker.HARVEST, self);
+		//array_push(global.jobs_no_worker.HARVEST, self);
+		add_job(global.jobs_no_worker.HARVEST, self, priority);
 		state = "INACTIVE";
 	}
 	
@@ -85,7 +88,7 @@ function HarvestResource(_worker = noone, _target) : Job() constructor{
 	}
 }
 
-function HaulItem(_worker, _item_container, _item_struct, _deliver_to, _priority) : Job() constructor{
+function HaulItem(_worker, _item_container, _item_struct, _deliver_to, _priority = 0) : Job() constructor{
 	show_debug_message("HaulItem");
 	worker = _worker;
 	item_container = _item_container;
@@ -94,6 +97,7 @@ function HaulItem(_worker, _item_container, _item_struct, _deliver_to, _priority
 	deliver_to = _deliver_to;
 	x = _item_container.x;
 	y = _item_container.y;
+	priority = _priority;
 	
 	state = "INACTIVE";
 	type = "HAUL_ITEM";
@@ -105,7 +109,8 @@ function HaulItem(_worker, _item_container, _item_struct, _deliver_to, _priority
 	static cancel_job = function(){
 		switch state{
 			case "INACTIVE" :
-				array_push(global.jobs_no_worker.HAUL_ITEM, self);
+				//array_push(global.jobs_no_worker.HAUL_ITEM, self);
+				add_job(global.jobs_no_worker.HAUL_ITEM, self, priority);
 				break;
 			case "GO_TO_STORE" :
 				switch item_name{
@@ -143,14 +148,14 @@ function HaulItem(_worker, _item_container, _item_struct, _deliver_to, _priority
 		switch state{
 			case "INACTIVE":
 				if (point_distance(worker.cell_x, worker.cell_y, item_container.cell_x, item_container.cell_y) == 0){
-					pickup(item_struct, item_container, worker, _priority);
+					exchange_item(item_struct, item_container, worker, _priority);
 					move_to_pos(deliver_to.cell_x, deliver_to.cell_y, worker);
 					state = "GO_TO_STORE";	
 				}
 				break;
 			case "GO_TO_STORE":
 				if (point_distance(worker.cell_x, worker.cell_y, deliver_to.cell_x, deliver_to.cell_y) == 0){
-					pickup(item_struct, worker, deliver_to, _priority);
+					exchange_item(item_struct, worker, deliver_to, _priority);
 					job_finished(worker);
 					state = "JOB_FINISHED";
 				}
@@ -160,12 +165,13 @@ function HaulItem(_worker, _item_container, _item_struct, _deliver_to, _priority
 	}
 }
 
-function Farm(_deliver_to, _required_resources) : Job() constructor{
+function Farm(_deliver_to, _required_resources, _priority = 0) : Job() constructor{
 	deliver_to = _deliver_to;
 	required_resources = _required_resources; 
 	state = FARM_PLOT_STATE.plant;
 	job = undefined;
 	plant = noone;
+	priority = _priority;
 	
 	enum FARM_PLOT_STATE {
 		plant,
@@ -196,7 +202,7 @@ function Farm(_deliver_to, _required_resources) : Job() constructor{
 					show_debug_message("Farm job is undefined for planting")
 					var _item_name = struct_get_names(required_resources)[0];
 					var _item_struct = struct_get(required_resources, _item_name); 
-					job = create_job_for_resource(deliver_to, _item_struct, _item_name);
+					job = create_job_for_resource(deliver_to, _item_struct, _item_name, priority);
 				}else{
 					var _quantity = struct_get(deliver_to.inventory.SEED, "quantity");
 				}
@@ -222,27 +228,29 @@ function Farm(_deliver_to, _required_resources) : Job() constructor{
 
 }
 
-function DeliverResources(_deliver_to, _required_resources, _priority) : Job() constructor{
+function DeliverResources(_deliver_to, _required_resources, _priority = 0) : Job() constructor{
 	deliver_to = _deliver_to;
 	required_resources = _required_resources;
 	inventory = deliver_to.inventory;
+	priority = _priority;
 	
 	static update = function(){
 		var _item_names = struct_get_names(required_resources);
 		for (var i = 0; i < array_length(_item_names); i ++){
 			var _item_name = _item_names[i];
 			var _item_struct = struct_get(required_resources, _item_name);
-			create_job_for_resource(deliver_to, _item_struct, _item_name, _priority);
+			create_job_for_resource(deliver_to, _item_struct, _item_name, priority);
 		}
 	}
 }
 
-function Build(_worker, _building) : Job() constructor{
+function Build(_worker, _building, _priority = 1) : Job() constructor{
 	worker = _worker;
 	building = _building;
 	type = "BUILD";
 	state = "INACTIVE";
 	timer = 0;
+	priority = _priority;
 
 	x = building.x;
 	y = building.y;
@@ -251,7 +259,8 @@ function Build(_worker, _building) : Job() constructor{
 		worker.job_was_cancelled();
 		worker = noone;
 		state = "INACTIVE";
-		array_push(global.jobs_no_worker.BUILD, self);
+		//array_push(global.jobs_no_worker.BUILD, self);
+		add_job(global.jobs_no_worker.BUILD, self, priority);
 	}
 	
 	static initialise = function(){
@@ -296,19 +305,25 @@ function Build(_worker, _building) : Job() constructor{
 	}
 }
 
-function BuildManager(_building) : Job () constructor{
+function BuildManager(_building, _priority = 1) : Job () constructor{
 	jobs = [];
 	max_jobs = 2;
 	building = _building;
 	type = "BUILD_MANAGER";
+	priority = _priority;
 	
 	static update = function(){
 		//If < 2 workers, give them a build task
 		
 		if (array_length(jobs) < max_jobs){
-			var _job = new Build(,building);
-			array_push(global.jobs_no_worker.BUILD, _job);
+			var _job = new Build(,building, priority);
+			add_job(global.jobs_no_worker.BUILD, _job, priority);
 			array_push(jobs, _job);
 		}
 	}
+}
+
+function add_job(_array, _job, _priority){
+	array_push(_array, _job);	
+	array_sort(_array, sort_by_priority);
 }

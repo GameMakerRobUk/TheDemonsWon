@@ -5,7 +5,8 @@ with objBoulder{
 	if (job != undefined){
 		continue;
 	}
-	array_push(global.jobs_no_worker.HARVEST, new HarvestResource(,id));	
+	//array_push(global.jobs_no_worker.HARVEST, new HarvestResource(,id));	
+	add_job(global.jobs_no_worker.HARVEST, new HarvestResource(,id), priority);
 }
 
 //with objTree{
@@ -67,7 +68,7 @@ for (var i = array_length(global.idle_workers) - 1; i >= 0; i --){
 			}
 		}
 		
-		array_sort(_available_jobs, sort_by_distance);
+		array_sort(_available_jobs, sort_by_distance_and_priority);
 		
 		var _job = array_shift(_available_jobs);
 		array_delete(global.idle_workers, i, 1);

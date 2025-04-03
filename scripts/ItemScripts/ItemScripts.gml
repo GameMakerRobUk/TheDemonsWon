@@ -80,15 +80,15 @@ function remove_item(_store, _item_struct){
 	return _item_struct; //can only return 5 logs, even when wanted is 10
 }
 
-function pickup(_item_struct, _store, _taker){
-	show_debug_message("pickup");
+function exchange_item(_item_struct, _store, _taker){
+	show_debug_message("exchange_item");
 	show_debug_message("_item_struct: " + string(_item_struct))
 	show_debug_message("store: " + string(object_get_name(_store.object_index)));
 	
 	_item_struct = remove_item(_store, _item_struct);
 	add_item(_taker, _item_struct);
 	
-	show_debug_message("pickup done | _item_struct: " + string(_item_struct) + " | _taker inv: " + string(_taker.inventory))
+	show_debug_message("exchange_item done | _item_struct: " + string(_item_struct) + " | _taker inv: " + string(_taker.inventory))
 }
 
 function get_weight(_item_name){
