@@ -16,9 +16,19 @@ if (state == "walk"){
 			target = array_pop(path);
 		}
 	}else{
-		var _xsign = sign(target.x - x);
-		x += _xsign;
-		y += sign(target.y - y);
+		var _xdiff = target.x - x;
+		var _xsign = sign(_xdiff);
+		var _ydiff = target.y - y;
+		var _ysign = sign(_ydiff)
+		
+		var _xval = _xsign * global.delta.multiplier;
+		var _yval = _ysign * global.delta.multiplier;
+		
+		if (abs(_xval) > abs(_xdiff)) x = target.x;
+		else x += _xval;
+		
+		if (abs(_yval) > abs(_ydiff)) y = target.y;
+		else y += _yval;
 		
 		image_xscale = -_xsign;
 	}

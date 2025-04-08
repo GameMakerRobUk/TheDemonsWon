@@ -43,6 +43,7 @@
     {"name":"objBuilding","order":1,"path":"objects/objBuilding/objBuilding.yy",},
     {"name":"objBuildingStone","order":2,"path":"objects/objBuildingStone/objBuildingStone.yy",},
     {"name":"objCamera","order":4,"path":"objects/objCamera/objCamera.yy",},
+    {"name":"objDeltaTime","order":16,"path":"objects/objDeltaTime/objDeltaTime.yy",},
     {"name":"objFarmPlot","order":4,"path":"objects/objFarmPlot/objFarmPlot.yy",},
     {"name":"objLog","order":5,"path":"objects/objLog/objLog.yy",},
     {"name":"objLogSpawner","order":13,"path":"objects/objLogSpawner/objLogSpawner.yy",},

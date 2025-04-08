@@ -63,6 +63,7 @@
     {"id":{"name":"objBuilding","path":"objects/objBuilding/objBuilding.yy",},},
     {"id":{"name":"objBuildingStone","path":"objects/objBuildingStone/objBuildingStone.yy",},},
     {"id":{"name":"objCamera","path":"objects/objCamera/objCamera.yy",},},
+    {"id":{"name":"objDeltaTime","path":"objects/objDeltaTime/objDeltaTime.yy",},},
     {"id":{"name":"objFarmPlot","path":"objects/objFarmPlot/objFarmPlot.yy",},},
     {"id":{"name":"objJobManager","path":"objects/objJobManager/objJobManager.yy",},},
     {"id":{"name":"objLog","path":"objects/objLog/objLog.yy",},},

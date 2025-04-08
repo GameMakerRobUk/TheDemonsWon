@@ -16,6 +16,8 @@ if (hand_item.name != undefined && hand_item.sprite != struct_get(_state_sprites
 	//show_debug_message("setting hand_item sprites to " + string(hand_item.sprite))
 }
 
+image_speed = global.delta.multiplier;
+
 //if (state == ACTOR_STATE.moving){
 //	if (sprite_index != sprites.body.walk[race]){
 //		sprite_index = sprites.body.walk[race]	
