@@ -1,22 +1,17 @@
 {
   "$GMObject":"",
-  "%Name":"objBuildingStone",
+  "%Name":"parBuilding",
   "eventList":[
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":1,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"objBuildingStone",
+  "name":"parBuilding",
   "overriddenProperties":[],
   "parent":{
     "name":"Buildings",
     "path":"folders/Objects/Buildings.yy",
   },
-  "parentObjectId":{
-    "name":"parBuilding",
-    "path":"objects/parBuilding/parBuilding.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -34,10 +29,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_building_stone",
-    "path":"sprites/spr_building_stone/spr_building_stone.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

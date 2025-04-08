@@ -10,10 +10,13 @@
   "name":"objBuilding",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Buildings",
+    "path":"folders/Objects/Buildings.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"parBuilding",
+    "path":"objects/parBuilding/parBuilding.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

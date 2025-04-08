@@ -1,7 +1,7 @@
 function Job() constructor{
 	priority = 0;	
 	
-	static create_job_for_resource = function(_deliver_to, _item_struct, _item_name){
+	static create_job_for_resource = function(_deliver_to, _item_struct, _item_name, _priority = 0){
 		var _quantity_wanted = _item_struct.wanted;
 		var _expected = _item_struct.expected;
 		var _weight_per_unit = get_weight(_item_name);
@@ -30,10 +30,10 @@ function Job() constructor{
 	
 		show_debug_message("create_job_for_resource _storage: " + string(_storage) + " | " + object_get_name(_storage.object_index));
 	
-		var _job = new HaulItem(,_storage, _haul_item_struct, _deliver_to);
+		var _job = new HaulItem(,_storage, _haul_item_struct, _deliver_to, _priority);
 				
 		//array_push(global.jobs_no_worker.HAUL_ITEM, _job);	
-		add_job(global.jobs_no_worker.HAUL_ITEM, _job, priority);
+		add_job(global.jobs_no_worker.HAUL_ITEM, _job, _priority);
 		return _job;
 	}
 }
@@ -233,6 +233,8 @@ function DeliverResources(_deliver_to, _required_resources, _priority = 0) : Job
 	required_resources = _required_resources;
 	inventory = deliver_to.inventory;
 	priority = _priority;
+	
+	show_debug_message("new DeliverResources created with priority of " + string(priority))
 	
 	static update = function(){
 		var _item_names = struct_get_names(required_resources);

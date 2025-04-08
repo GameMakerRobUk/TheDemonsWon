@@ -1,3 +1,4 @@
+event_inherited();
 job = undefined;
 
 item_was_given = function(){
