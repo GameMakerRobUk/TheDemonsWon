@@ -17,6 +17,7 @@ function get_closest_storage(_item_name, _deliver_to = noone){
 	}
 			
 	with parItem{
+		show_debug_message(object_get_name(object_index))
 		if (claimed){
 			show_debug_message(string(id) + " is already claimed, cannot set as store")
 			continue;
