@@ -1,7 +1,7 @@
-function Job() constructor{
-	priority = 0;	
+function Job(_priority) constructor{
+	priority = _priority;	
 	
-	static create_job_for_resource = function(_deliver_to, _item_struct, _item_name, _priority = 0){
+	static create_job_for_resource = function(_deliver_to, _item_struct, _item_name, _priority = priority){
 		var _quantity_wanted = _item_struct.wanted;
 		var _expected = _item_struct.expected;
 		var _weight_per_unit = get_weight(_item_name);
@@ -38,7 +38,7 @@ function Job() constructor{
 	}
 }
 
-function HarvestResource(_worker = noone, _target, _priority = 0) : Job() constructor{
+function HarvestResource(_worker = noone, _target, _priority = 0) : Job(_priority) constructor{
 	worker = _worker;
 	target = _target;
 	type = "HARVEST";
@@ -88,8 +88,9 @@ function HarvestResource(_worker = noone, _target, _priority = 0) : Job() constr
 	}
 }
 
-function HaulItem(_worker, _item_container, _item_struct, _deliver_to, _priority = 0) : Job() constructor{
+function HaulItem(_worker, _item_container, _item_struct, _deliver_to, _priority = 0) : Job(_priority) constructor{
 	show_debug_message("HaulItem");
+	show_debug_message("Creating new HaulItem with priority of " + string(_priority) + " delivering to " + object_get_name(_deliver_to.object_index))
 	worker = _worker;
 	item_container = _item_container;
 	item_struct = _item_struct;
@@ -145,6 +146,7 @@ function HaulItem(_worker, _item_container, _item_struct, _deliver_to, _priority
 	}
 	
 	static step = function(){
+		show_debug_message("HaulItem priority: " + string(priority) + " | " + object_get_name(deliver_to.object_index))
 		switch state{
 			case "INACTIVE":
 				if (point_distance(worker.cell_x, worker.cell_y, item_container.cell_x, item_container.cell_y) == 0){
@@ -165,7 +167,7 @@ function HaulItem(_worker, _item_container, _item_struct, _deliver_to, _priority
 	}
 }
 
-function Farm(_deliver_to, _required_resources, _priority = 0) : Job() constructor{
+function Farm(_deliver_to, _required_resources, _priority = 0) : Job(_priority) constructor{
 	deliver_to = _deliver_to;
 	required_resources = _required_resources; 
 	state = FARM_PLOT_STATE.plant;
@@ -228,7 +230,7 @@ function Farm(_deliver_to, _required_resources, _priority = 0) : Job() construct
 
 }
 
-function DeliverResources(_deliver_to, _required_resources, _priority = 0) : Job() constructor{
+function DeliverResources(_deliver_to, _required_resources, _priority = 0) : Job(_priority) constructor{
 	deliver_to = _deliver_to;
 	required_resources = _required_resources;
 	inventory = deliver_to.inventory;
@@ -246,7 +248,7 @@ function DeliverResources(_deliver_to, _required_resources, _priority = 0) : Job
 	}
 }
 
-function Build(_worker, _building, _priority = 1) : Job() constructor{
+function Build(_worker, _building, _priority = 1) : Job(_priority) constructor{
 	worker = _worker;
 	building = _building;
 	type = "BUILD";
@@ -307,7 +309,7 @@ function Build(_worker, _building, _priority = 1) : Job() constructor{
 	}
 }
 
-function BuildManager(_building, _priority = 1) : Job () constructor{
+function BuildManager(_building, _priority = 1) : Job (_priority) constructor{
 	jobs = [];
 	max_jobs = 2;
 	building = _building;

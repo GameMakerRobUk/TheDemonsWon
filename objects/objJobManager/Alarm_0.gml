@@ -68,9 +68,25 @@ for (var i = array_length(global.idle_workers) - 1; i >= 0; i --){
 			}
 		}
 		
-		array_sort(_available_jobs, sort_by_distance_and_priority);
+		switch _job_type{
+			case "HARVEST" :{
+				array_sort(_available_jobs, sort_by_distance);
+				show_debug_message("1st: " + string(_available_jobs[0].dist));
+				show_debug_message("2nd: " + string(_available_jobs[array_length(_available_jobs) -1].dist));
+			}; break;
+			case "HAUL_ITEM" :{
+				array_sort(_available_jobs, sort_by_distance_and_priority);
+			}; break;
+			case "GET_ITEM" :{
+				array_sort(_available_jobs, sort_by_distance);
+			}; break;
+			case "BUILD" :{
+				array_sort(_available_jobs, sort_by_distance);
+			}; break;
+		}
 		
 		var _job = array_shift(_available_jobs);
+		show_debug_message("choosing job with a distance of " + string(_job.dist))
 		array_delete(global.idle_workers, i, 1);
 		set_job(_worker, _job);
 		break;
