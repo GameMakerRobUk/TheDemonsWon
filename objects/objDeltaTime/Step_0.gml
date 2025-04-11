@@ -1,12 +1,12 @@
 if (keyboard_check_pressed(vk_right)){
 	with global.delta{
-		frame_speeds_index = clamp(frame_speeds_index + 1, 0, 4);	
+		frame_speeds_index = clamp(frame_speeds_index + 1, 0, array_length(frame_speeds) - 1);		
 		target_frame_speed = frame_speeds[frame_speeds_index];
 	}
 }
 if (keyboard_check_pressed(vk_left)){
 	with global.delta{
-		frame_speeds_index = clamp(frame_speeds_index - 1, 0, 4);		
+		frame_speeds_index = clamp(frame_speeds_index - 1, 0, array_length(frame_speeds) - 1);		
 		target_frame_speed = frame_speeds[frame_speeds_index];
 	}
 }

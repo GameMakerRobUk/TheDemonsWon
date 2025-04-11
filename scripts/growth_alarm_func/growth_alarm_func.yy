@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"growth_alarm_func",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"growth_alarm_func",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

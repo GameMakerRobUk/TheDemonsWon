@@ -15,6 +15,18 @@ function job_finished(_worker){
 	}
 }
 
+function actor_cancel_job(){
+	if (job != undefined){
+		show_debug_message("actor_cancel_job, job is defined")
+		//cancel	
+		job.cancel_job();
+	}
+}
+
+function actor_go_idle(){
+	state = "idle";
+}
+
 function move_to_pos(_cell_x, _cell_y, _actor){
 	show_debug_message("move_to_pos");
 	set_path(_cell_x, _cell_y, _actor);

@@ -75,7 +75,7 @@ function HarvestResource(_worker = noone, _target, _priority = 0) : Job(_priorit
 				}
 				break;
 			case "HARVEST":{
-				timer ++;
+				timer += global.delta.multiplier;
 				if (timer < room_speed)
 					exit;
 	
@@ -291,7 +291,7 @@ function Build(_worker, _building, _priority = 1) : Job(_priority) constructor{
 					exit;
 				}
 				
-				timer ++;
+				timer += global.delta.multiplier;
 				if (timer < room_speed)
 					exit;
 	

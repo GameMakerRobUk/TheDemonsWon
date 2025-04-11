@@ -4,6 +4,8 @@ window_set_fullscreen(false);
 
 #macro Test_Cancellations:TEST_CANCELLATIONS true
 
+#macro GAME_SPEED game_get_speed(gamespeed_fps)
+
 global.item_stats = {
 	LOGS : {weight : 1},
 	STONE : {weight : 2},

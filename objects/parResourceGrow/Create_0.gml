@@ -1,12 +1,12 @@
 event_inherited();
 
-growth_speed = (room_speed * 2);
+growth_speed = (room_speed * 2);// * GAME_SPEED;
 max_growth_stage = image_number - 1;
 growth_stage = 0;
 hp = 5;
 myDeathResource = undefined;
 
-alarm[0] = growth_speed;
+//alarm[0] = growth_speed;
 
 i_was_damaged = function(){
 	if (hp > 0){
@@ -30,3 +30,5 @@ die = function(){
 }
 
 tool_name = undefined;
+
+alarms[0] = new Alarm(growth_speed, growth_alarm_func, id, true);
