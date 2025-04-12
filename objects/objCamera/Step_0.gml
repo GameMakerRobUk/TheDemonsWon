@@ -1,6 +1,17 @@
 var _cam_xspd = (keyboard_check(ord("D")) - keyboard_check(ord("A"))) * CAM_SPEED;
 var _cam_yspd = (keyboard_check(ord("S")) - keyboard_check(ord("W"))) * CAM_SPEED;
 
+if (mouse_wheel_down()){
+	zoom_index = clamp(zoom_index + 1, 0, 3);
+	var _res = zoom_resolutions[zoom_index];
+	camera_set_view_size(view_camera[0], _res.w, _res.h);
+}
+if (mouse_wheel_up()){
+	zoom_index = clamp(zoom_index - 1, 0, 3);
+	var _res = zoom_resolutions[zoom_index];
+	camera_set_view_size(view_camera[0], _res.w, _res.h);
+}
+
 if (follow != noone){
 	cx = follow.x - (CAM_W / 2);
 	cy = follow.y - (CAM_H / 2);
