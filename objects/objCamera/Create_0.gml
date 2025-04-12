@@ -3,3 +3,9 @@
 #macro CAM_SPEED 8
 cx = 0;
 cy = 0;
+
+initialised = false;
+follow = noone;
+follow_index = 0;
+actors = [];
+with parActor array_push(other.actors, id);
