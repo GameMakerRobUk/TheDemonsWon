@@ -5,16 +5,20 @@ if (mouse_wheel_down()){
 	zoom_index = clamp(zoom_index + 1, 0, 3);
 	var _res = zoom_resolutions[zoom_index];
 	camera_set_view_size(view_camera[0], _res.w, _res.h);
+	cam_w = _res.w;
+	cam_h = _res.h;
 }
 if (mouse_wheel_up()){
 	zoom_index = clamp(zoom_index - 1, 0, 3);
 	var _res = zoom_resolutions[zoom_index];
 	camera_set_view_size(view_camera[0], _res.w, _res.h);
+	cam_w = _res.w;
+	cam_h = _res.h;
 }
 
 if (follow != noone){
-	cx = follow.x - (CAM_W / 2);
-	cy = follow.y - (CAM_H / 2);
+	cx = follow.x - (cam_w / 2);
+	cy = follow.y - (cam_h / 2);
 	
 	if (_cam_xspd != 0 || _cam_yspd != 0){
 		follow = noone;	
@@ -35,7 +39,7 @@ if (keyboard_check_pressed(vk_backspace)){
 	}
 }
 
-cx = clamp(cx, 0, room_width - CAM_W);
-cy = clamp(cy, 0, room_height - CAM_H);
+cx = clamp(cx, 0, room_width - cam_w);
+cy = clamp(cy, 0, room_height - cam_h);
 
 camera_set_view_pos(view_camera[0], cx, cy);

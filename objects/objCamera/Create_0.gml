@@ -18,3 +18,5 @@ zoom_resolutions = [
 ];
 
 zoom_index = 1;
+cam_w = zoom_resolutions[zoom_index].w;
+cam_h = zoom_resolutions[zoom_index].h;
