@@ -6,8 +6,6 @@
 //}
 weight = new Weight(10, 0);
 
-state_debug = ["idle", "moving", "working", "thinking"]
-
 inventory = {};
 allowed_jobs = [];
 

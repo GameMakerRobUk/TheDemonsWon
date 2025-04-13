@@ -1,19 +1,19 @@
 {
   "$GMObject":"",
-  "%Name":"objActor",
+  "%Name":"objDamned",
   "eventList":[
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"objActor",
+  "name":"objDamned",
   "overriddenProperties":[],
   "parent":{
     "name":"Actors",
     "path":"folders/Objects/Actors.yy",
   },
   "parentObjectId":{
-    "name":"parActor",
-    "path":"objects/parActor/parActor.yy",
+    "name":"parActorNme",
+    "path":"objects/parActorNme/parActorNme.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

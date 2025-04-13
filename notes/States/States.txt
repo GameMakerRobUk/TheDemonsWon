@@ -1,9 +1,8 @@
-State system
-
-actor_states = {
-	idle : {
-		sprites : {
-		
-		}
-	}
-}
+"work" : 
+  - Take on jobs and perform them
+  
+"fight" :
+  - Seek out enemies and fight them
+  
+"default" :
+  - pick a random spot to move to

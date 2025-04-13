@@ -1,11 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"objActor",
-  "eventList":[
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"parActorNme",
+  "eventList":[],
   "managed":true,
-  "name":"objActor",
+  "name":"parActorNme",
   "overriddenProperties":[],
   "parent":{
     "name":"Actors",
@@ -32,10 +30,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_actor",
-    "path":"sprites/spr_actor/spr_actor.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }
