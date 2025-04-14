@@ -4,35 +4,35 @@
 //	working,
 //	thinking,
 //}
-weight = new Weight(10, 0);
+//weight = new Weight(10, 0);
 
-inventory = {};
-allowed_jobs = [];
+//inventory = {};
+//allowed_jobs = [];
 
-item_was_taken = function(){
-	show_debug_message("parActor item_was_taken")
-	//was it stolen? lol	
-}
+//item_was_taken = function(){
+//	show_debug_message("parActor item_was_taken")
+//	//was it stolen? lol	
+//}
 
-item_was_given = function(){
-	show_debug_message("parActor item_was_given")
-	//Update weight etc	
-}
+//item_was_given = function(){
+//	show_debug_message("parActor item_was_given")
+//	//Update weight etc	
+//}
 
-job_was_cancelled = function(){
-	show_debug_message("parActor job_was_cancelled")
-	job_finished(id);
-}
+//job_was_cancelled = function(){
+//	show_debug_message("parActor job_was_cancelled")
+//	job_finished(id);
+//}
 
 if (TEST_CANCELLATIONS){
 	//alarm[0] = irandom_range(room_speed, (room_speed * 3));//Test Cancelling jobs
 }
 
-race = irandom(4);
-sex = choose("male", "female");
-hand_item = {name : undefined, sprite : -1};
+//race = irandom(4);
+//sex = choose("male", "female");
+//hand_item = {name : undefined, sprite : -1};
 
-sprites = new ActorSprites(sex, race);
+//sprites = new ActorSprites(sex, race);
 
 //show_debug_message("actor sprites: " + string(sprites))
 

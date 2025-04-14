@@ -96,6 +96,8 @@
     {"id":{"name":"add_message","path":"scripts/add_message/add_message.yy",},},
     {"id":{"name":"Alarm","path":"scripts/Alarm/Alarm.yy",},},
     {"id":{"name":"canvas_fullscreen","path":"scripts/canvas_fullscreen/canvas_fullscreen.yy",},},
+    {"id":{"name":"Character","path":"scripts/Character/Character.yy",},},
+    {"id":{"name":"create_player_actors","path":"scripts/create_player_actors/create_player_actors.yy",},},
     {"id":{"name":"create_sprite","path":"scripts/create_sprite/create_sprite.yy",},},
     {"id":{"name":"get_closest_storage","path":"scripts/get_closest_storage/get_closest_storage.yy",},},
     {"id":{"name":"get_distance","path":"scripts/get_distance/get_distance.yy",},},
